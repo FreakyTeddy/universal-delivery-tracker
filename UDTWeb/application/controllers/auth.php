@@ -13,8 +13,15 @@ class Auth extends CI_Controller
 		$this->lang->load('tank_auth');
 	}
 
+	public function abstract_view($view,$params){
+    	$params["current_view"] = $view;
+        $this->load->view('main',$params);
+    }
+	
+	
 	function index()
 	{
+		
 		if ($message = $this->session->flashdata('message')) {
 			$this->load->view('auth/general_message', array('message' => $message));
 		} else {
@@ -92,7 +99,7 @@ class Auth extends CI_Controller
 					$data['captcha_html'] = $this->_create_captcha();
 				}
 			}
-			$this->load->view('auth/login_form', $data);
+			$this->abstract_view('auth/login_form', $data);
 		}
 	}
 
@@ -188,7 +195,7 @@ class Auth extends CI_Controller
 			$data['use_username'] = $use_username;
 			$data['captcha_registration'] = $captcha_registration;
 			$data['use_recaptcha'] = $use_recaptcha;
-			$this->load->view('auth/register_form', $data);
+			$this->abstract_view('auth/register_form', $data);
 		}
 	}
 
@@ -223,7 +230,7 @@ class Auth extends CI_Controller
 					foreach ($errors as $k => $v)	$data['errors'][$k] = $this->lang->line($v);
 				}
 			}
-			$this->load->view('auth/send_again_form', $data);
+			$this->abstract_view('auth/send_again_form', $data);
 		}
 	}
 
@@ -283,7 +290,7 @@ class Auth extends CI_Controller
 					foreach ($errors as $k => $v)	$data['errors'][$k] = $this->lang->line($v);
 				}
 			}
-			$this->load->view('auth/forgot_password_form', $data);
+			$this->abstract_view('auth/forgot_password_form', $data);
 		}
 	}
 
@@ -329,7 +336,7 @@ class Auth extends CI_Controller
 				$this->_show_message($this->lang->line('auth_message_new_password_failed'));
 			}
 		}
-		$this->load->view('auth/reset_password_form', $data);
+		$this->abstract_view('auth/reset_password_form', $data);
 	}
 
 	/**
@@ -360,7 +367,7 @@ class Auth extends CI_Controller
 					foreach ($errors as $k => $v)	$data['errors'][$k] = $this->lang->line($v);
 				}
 			}
-			$this->load->view('auth/change_password_form', $data);
+			$this->abstract_view('auth/change_password_form', $data);
 		}
 	}
 
@@ -397,7 +404,7 @@ class Auth extends CI_Controller
 					foreach ($errors as $k => $v)	$data['errors'][$k] = $this->lang->line($v);
 				}
 			}
-			$this->load->view('auth/change_email_form', $data);
+			$this->abstract_view('auth/change_email_form', $data);
 		}
 	}
 
@@ -448,7 +455,7 @@ class Auth extends CI_Controller
 					foreach ($errors as $k => $v)	$data['errors'][$k] = $this->lang->line($v);
 				}
 			}
-			$this->load->view('auth/unregister_form', $data);
+			$this->abstract_view('auth/unregister_form', $data);
 		}
 	}
 

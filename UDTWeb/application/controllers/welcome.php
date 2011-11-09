@@ -10,9 +10,12 @@ class Welcome extends CI_Controller
 		$this->load->library('tank_auth');
 	}
 
+
 	function index()
 	{
-		$this->load->view('index');
+		$params=array();
+		$this->abstract_view($params,"home");
+		
 		/*if (!$this->tank_auth->is_logged_in()) {
 			redirect('/auth/login/');
 		} else {
@@ -21,6 +24,11 @@ class Welcome extends CI_Controller
 			$this->load->view('welcome', $data);
 		}*/
 	}
+	
+	public function abstract_view($params,$view){
+    	$params["current_view"] = $view;
+        $this->load->view('main',$params);
+    }
 }
 
 /* End of file welcome.php */
