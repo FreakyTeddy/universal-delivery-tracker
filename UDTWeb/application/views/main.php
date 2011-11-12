@@ -7,8 +7,8 @@
 		!window.jQuery && document.write('<script src="<?=base_url()?>js/jquery-1.4.3.min.js"><\/script>');
 	</script>
 
-<!--   Note: you will need to replace the sensor parameter below with either an explicit true or false value.-->
-<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAAJK4GHHlJh0Xk9L441bOhXBSydMAXsgAohD7A40hRBICJDy9EmBTihOqq13-Foa2npVBjRHDoP2auqQ" type="text/javascript"></script>
+<!-- Google Maps Api.-->
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 	
 <script type="text/javascript" src="<?=base_url()?>js/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
 <script type="text/javascript" src="<?=base_url()?>js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>

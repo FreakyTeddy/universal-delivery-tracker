@@ -23,7 +23,9 @@ class Tracker extends CI_Controller
 	{
 		$params=array();
 		$number = $this->input->post('tracker_number');
-		echo $number;
+		$params['latitud'] = -34.617528;//TODO HARCODE latitud 
+		$params['altitud'] = -58.368022;//TODO HARCODE altitud
+
 		$this->abstract_view($params,"map_tracker");
 	}
 	

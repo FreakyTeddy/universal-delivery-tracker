@@ -1,13 +1,43 @@
-<script type="text/javascript">
-	$(document).ready(function() {
+ <link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
+ <script type="text/javascript">
+		var altitud = <?php echo $altitud;?>;
+ 		var latitud = <?php echo $latitud;?>;
+		 var stockholm = new google.maps.LatLng(latitud,altitud);
+		 var parliament = new google.maps.LatLng(latitud, altitud);
+		 var marker;
+		 var map;
+		
+		 function initialize() {
+		   var mapOptions = {
+		     zoom: 13,
+		     mapTypeId: google.maps.MapTypeId.ROADMAP,
+		     center: stockholm
+		   };
+		
+		   map = new google.maps.Map(document.getElementById("map_canvas"),
+		           mapOptions);
+		         
+		   marker = new google.maps.Marker({
+		     map:map,
+		     draggable:true,
+		     animation: google.maps.Animation.DROP,
+		     position: parliament
+		   });
+		   google.maps.event.addListener(marker, 'click', toggleBounce);
+		 }
+		
+		 function toggleBounce() {
+		
+		   if (marker.getAnimation() != null) {
+		     marker.setAnimation(null);
+		   } else {
+		     marker.setAnimation(google.maps.Animation.BOUNCE);
+		   }
+		 }
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>  
+    
+<div id="map_canvas" style="height: 500px;width:500px;"></div>
 
-		// 12.119516,-77.030168, 1
-		var lat = -34.66;
-		var lng = -58.39;
-		var zoom = 15;
-		$("#map").append('<iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/?ie=UTF8&amp;ll='+lat+','+lng+'&amp;spn=0.074693,0.11673&amp;z='+zoom+'&amp;om=1&amp;output=embed&amp;s=AARTsJqzARj-Z8VnW5pkPMLMmZbqrJcYpw"></iframe>');		
-	});
-</script>
-<div id="map" style="text-align:center;padding:25px;"></div>
 
 
