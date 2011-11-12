@@ -37,7 +37,8 @@ class Auth extends CI_Controller
 	function login()
 	{
 		if ($this->tank_auth->is_logged_in()) {									// logged in
-			redirect('');
+			redirect('/auth/deshboard/');
+			//$this->abstract_view('dashboard',null);
 
 		} elseif ($this->tank_auth->is_logged_in(FALSE)) {						// logged in, not activated
 			redirect('/auth/send_again/');
@@ -75,7 +76,8 @@ class Auth extends CI_Controller
 						$this->form_validation->set_value('remember'),
 						$data['login_by_username'],
 						$data['login_by_email'])) {								// success
-					redirect('');
+					redirect('/auth/deshboard/');
+					//$this->abstract_view('dashboard',$data);
 
 				} else {
 					$errors = $this->tank_auth->get_error_message();
@@ -108,11 +110,23 @@ class Auth extends CI_Controller
 	 *
 	 * @return void
 	 */
+	function deshboard()
+	{
+		$params=array();
+		$this->abstract_view('dashboard', $params);
+	}
+	
+	
+	/**
+	 * Logout user
+	 *
+	 * @return void
+	 */
 	function logout()
 	{
 		$this->tank_auth->logout();
 
-		$this->_show_message($this->lang->line('auth_message_logged_out'));
+		redirect('/welcome/index/');
 	}
 
 	/**

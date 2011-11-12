@@ -24,8 +24,13 @@
         <div class="topNaviagationLink"><?php echo anchor('', 'Productos'); ?></div>
         <div class="topNaviagationLink"><?php echo anchor('/tracker/index/', 'Trackear'); ?></div>
         <div class="topNaviagationLink"><?php echo anchor('', 'Contactenos'); ?></div>
+        <?php if ( $this->tank_auth->is_logged_in() ) { ?>
+        <div class="topNaviagationLink"><?php echo anchor('/auth/logout/', 'Logout'); ?></div>
+        <?php  }else{?>
         <div class="topNaviagationLink"><?php echo anchor('/auth/login/', 'Login'); ?></div>
         <div class="topNaviagationLink"><?php echo anchor('/auth/register/', 'Register'); ?></div>
+        <?php }?>
+        
 	</div>
 	<div id="main_page">
 		 <?php if(isset($current_view)){$this->load->view($current_view);}?>
