@@ -3,11 +3,14 @@ package ar.com.udt;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -16,24 +19,30 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Spinner;
 import ar.com.udt.components.FamiliaresSpinnerAdapter;
+import ar.com.udt.components.MyItemizedOverlay;
 import ar.com.udt.model.Persona;
 import ar.com.udt.utils.DataHelper;
+import ar.com.udt.utils.Storage;
 
 import com.google.android.maps.GeoPoint;
+import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
+import com.google.android.maps.OverlayItem;
 
 public class TrackFamilyActivity  extends MapActivity {
 
 	MapView mapView;
 	MapController mapController;
 	ArrayList<Persona> familiares=null;
-	ArrayList<Persona> visibles = null;
+	
 	Spinner spinnerFamilia;
-	Overlay pinOverlay = null;
 
+	Drawable drawable;
+	MyItemizedOverlay itemizedOverlay;
+	
 	protected void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -48,12 +57,25 @@ public class TrackFamilyActivity  extends MapActivity {
 		mapController.setCenter(point);
 		mapController.setZoom(18);
 		
+		drawable = getResources().getDrawable(R.drawable.marker);
+		itemizedOverlay = new MyItemizedOverlay(drawable, mapView);
+		List<Overlay> overlays = mapView.getOverlays();
+		overlays.clear();
+		overlays.add(itemizedOverlay);
+		
+		
 		cargarDatosFamilia();
 		
 	}
 
 	private void cargarDatosFamilia(){
 		familiares = DataHelper.getInstance().getFamiliaresByClentId("Sarasa");
+		for (Persona familiar : familiares) {
+			Coordenadas c = familiar.getPosicion();
+			GeoPoint point = new GeoPoint((int) (c.getLatitud() * 1E6), (int) (c.getLongitud() * 1E6));
+			OverlayItem overlayItem = new OverlayItem(point, familiar.getUsername(),familiar.getDescripcion());
+			itemizedOverlay.addOverlay(overlayItem);
+		}
 		spinnerFamilia = (Spinner) findViewById(R.id.spinnerFamilia);
 		FamiliaresSpinnerAdapter adapter = new FamiliaresSpinnerAdapter(this,familiares);
 		spinnerFamilia.setAdapter(adapter);
@@ -61,9 +83,9 @@ public class TrackFamilyActivity  extends MapActivity {
 		    public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
 		    	Persona p = (Persona)spinnerFamilia.getSelectedItem();
 				if(p != null){
-					visibles = new ArrayList<Persona>();
-					visibles.add(p);
-					pintarMapa();
+					Coordenadas c = p.getPosicion();
+					GeoPoint point = new GeoPoint((int) (c.getLatitud() * 1E6), (int) (c.getLongitud() * 1E6));
+					mapController.animateTo(point);
 				}
 		    }
 
@@ -74,51 +96,10 @@ public class TrackFamilyActivity  extends MapActivity {
 		});
 	}
 	
-	private void pintarMapa(){
-		if(visibles != null){
-			pinOverlay = new MyLocationOverlay();
-			List<Overlay> overlays = mapView.getOverlays();
-			overlays.clear();
-			overlays.add(pinOverlay);
-			Coordenadas c = visibles.get(0).getPosicion();
-			GeoPoint point = new GeoPoint((int) (c.getLatitud() * 1E6), (int) (c.getLongitud() * 1E6));
-			mapController.animateTo(point);
-		}
-		
-	} 
-	
-	
 	protected boolean isRouteDisplayed() {
 		return true;
 	}
-	
-	class MyLocationOverlay extends com.google.android.maps.Overlay {
-		public boolean draw(Canvas canvas, MapView mapView, boolean shadow,
-				long when) {
-
-			super.draw(canvas, mapView, shadow);
-			Paint paint = new Paint();
-			paint.setStrokeWidth(1);
-			paint.setARGB(255, 255, 255, 255);
-			paint.setStyle(Paint.Style.STROKE);
-			Bitmap bmp = BitmapFactory.decodeResource(getResources(),
-					R.drawable.bluepushpin);
-			if(TrackFamilyActivity.this.visibles != null){
-				for(Persona p : TrackFamilyActivity.this.visibles){
-					Coordenadas c = p.getPosicion();
-					GeoPoint tmpLocation = new GeoPoint((int) (c.getLatitud() * 1E6), (int) (c.getLongitud() * 1E6));
-					Point tmpScreenCoords = new Point();
-					mapView.getProjection().toPixels(tmpLocation,tmpScreenCoords);
-					canvas.drawBitmap(bmp, tmpScreenCoords.x -bmp.getWidth()/2, tmpScreenCoords.y - bmp.getHeight(), paint);
-				}
-			}
-			
-			return true;
-		}
-
-	}
-	
-
+		
 	public void onProviderDisabled(String provider) {
 	}
 

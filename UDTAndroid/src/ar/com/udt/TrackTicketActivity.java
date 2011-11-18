@@ -3,23 +3,21 @@ package ar.com.udt;
 import java.util.List;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Point;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
+import ar.com.udt.components.MyItemizedOverlay;
 
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
+import com.google.android.maps.OverlayItem;
 
 public class TrackTicketActivity  extends MapActivity implements LocationListener{
 
@@ -28,7 +26,9 @@ public class TrackTicketActivity  extends MapActivity implements LocationListene
 	private LocationManager locationManager;
 	GeoPoint myLocation = null;
 	GeoPoint gPoint = null;
-
+	MyItemizedOverlay itemizedOverlay;
+	Drawable drawable;
+	
 	protected void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -41,16 +41,16 @@ public class TrackTicketActivity  extends MapActivity implements LocationListene
 		
 		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		
+		drawable = getResources().getDrawable(R.drawable.marker);
+		itemizedOverlay = new MyItemizedOverlay(drawable, mapView);
+		List<Overlay> overlays = mapView.getOverlays();
+		overlays.clear();
+		overlays.add(itemizedOverlay);		
+		
 		GeoPoint point =  new GeoPoint(-33632078,-58372829);
 		mapController.setCenter(point);
 		mapController.setZoom(18);
-
-
-		
-		
 	}
-	
-	
 	
 	protected void onResume() {
 		super.onResume();
@@ -69,12 +69,12 @@ public class TrackTicketActivity  extends MapActivity implements LocationListene
 		GeoPoint myLocation = new GeoPoint((int) (appState.getCoordenadas()
 				.getLatitud() * 1E6), (int) (appState.getCoordenadas()
 				.getLongitud() * 1E6));
-		mapController.animateTo(myLocation);
 		gPoint = myLocation;
-		MyLocationOverlay touch = new MyLocationOverlay();
-		List<Overlay> overlays = mapView.getOverlays();
-		overlays.clear();
-		overlays.add(touch);
+		OverlayItem overlayItem = new OverlayItem(myLocation, "Tú","");
+		itemizedOverlay.deleteAll();
+		itemizedOverlay.addOverlay(overlayItem);
+		mapController.animateTo(myLocation);
+		
 	}
 	
 	
@@ -82,26 +82,7 @@ public class TrackTicketActivity  extends MapActivity implements LocationListene
 
 
 	
-	class MyLocationOverlay extends com.google.android.maps.Overlay {
-		public boolean draw(Canvas canvas, MapView mapView, boolean shadow,
-				long when) {
 
-			super.draw(canvas, mapView, shadow);
-			Paint paint = new Paint();
-			// Converts lat/lng-Point to OUR coordinates on the screen.
-			Point myScreenCoords = new Point();
-			mapView.getProjection().toPixels(gPoint, myScreenCoords);
-			paint.setStrokeWidth(1);
-			paint.setARGB(255, 255, 255, 255);
-			paint.setStyle(Paint.Style.STROKE);
-			Bitmap bmp = BitmapFactory.decodeResource(getResources(),
-					R.drawable.bluepushpin);
-			canvas.drawBitmap(bmp, myScreenCoords.x -bmp.getWidth()/2, myScreenCoords.y - bmp.getHeight(), paint);
-			
-			return true;
-		}
-
-	}
 	
 
 	public void onProviderDisabled(String provider) {

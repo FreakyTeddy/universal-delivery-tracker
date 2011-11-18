@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="hello">Hello World, UDTMobile!</string>
-    <string name="app_name">UDT Mobile</string>
+    <string name="app_name">UT Mobile</string>
     <string name="input_mail">Email</string>
     <string name="password">Contraseña</string>
     <string name="user_data">Datos de Usuario</string>
