@@ -2,6 +2,8 @@
 package ar.com.udt.components;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import ar.com.udt.R;
+import ar.com.udt.utils.ImageManager;
 
 import com.google.android.maps.OverlayItem;
 
@@ -18,8 +21,8 @@ public class BalloonOverlayView<Item extends OverlayItem> extends FrameLayout {
 
 	private LinearLayout layout;
 	private TextView title;
-	private TextView snippet;
-
+//	private TextView snippet;
+	private ImageView image;
 	/**
 	 * Create a new BalloonOverlayView.
 	 * 
@@ -39,7 +42,8 @@ public class BalloonOverlayView<Item extends OverlayItem> extends FrameLayout {
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View v = inflater.inflate(R.layout.balloon_overlay, layout);
 		title = (TextView) v.findViewById(R.id.balloon_item_title);
-		snippet = (TextView) v.findViewById(R.id.balloon_item_snippet);
+//		snippet = (TextView) v.findViewById(R.id.balloon_item_snippet);
+		image = (ImageView) v.findViewById(R.id.image);
 
 		ImageView close = (ImageView) v.findViewById(R.id.close_img_button);
 		close.setOnClickListener(new OnClickListener() {
@@ -63,7 +67,6 @@ public class BalloonOverlayView<Item extends OverlayItem> extends FrameLayout {
 	 * (title and snippet). 
 	 */
 	public void setData(Item item) {
-		
 		layout.setVisibility(VISIBLE);
 		if (item.getTitle() != null) {
 			title.setVisibility(VISIBLE);
@@ -72,12 +75,13 @@ public class BalloonOverlayView<Item extends OverlayItem> extends FrameLayout {
 			title.setVisibility(GONE);
 		}
 		if (item.getSnippet() != null) {
-			snippet.setVisibility(VISIBLE);
-			snippet.setText(item.getSnippet());
-		} else {
-			snippet.setVisibility(GONE);
+			Bitmap bmp = ImageManager.getBitMap(item.getSnippet(), item.getSnippet());
+			if(bmp!=null){
+				image.setImageBitmap(bmp);
+			}
 		}
-		
 	}
+	
+	
 
 }

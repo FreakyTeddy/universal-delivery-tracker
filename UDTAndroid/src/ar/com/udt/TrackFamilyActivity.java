@@ -73,7 +73,7 @@ public class TrackFamilyActivity  extends MapActivity {
 		for (Persona familiar : familiares) {
 			Coordenadas c = familiar.getPosicion();
 			GeoPoint point = new GeoPoint((int) (c.getLatitud() * 1E6), (int) (c.getLongitud() * 1E6));
-			OverlayItem overlayItem = new OverlayItem(point, familiar.getUsername(),familiar.getDescripcion());
+			OverlayItem overlayItem = new OverlayItem(point, familiar.getUsername(),familiar.getUrlImage());
 			itemizedOverlay.addOverlay(overlayItem);
 		}
 		spinnerFamilia = (Spinner) findViewById(R.id.spinnerFamilia);

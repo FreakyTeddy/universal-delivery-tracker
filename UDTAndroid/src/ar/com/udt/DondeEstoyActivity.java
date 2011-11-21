@@ -3,7 +3,6 @@ package ar.com.udt;
 import java.util.List;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationListener;
@@ -15,6 +14,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import ar.com.udt.components.MyItemizedOverlay;
+import ar.com.udt.utils.TrackHelper;
 
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
@@ -28,7 +28,6 @@ public class DondeEstoyActivity  extends MapActivity implements LocationListener
 	MapView mapView;
 	MapController mapController;
 	private LocationManager locationManager;
-	GeoPoint myLocation = null;
 	GeoPoint gPoint = null;
 	MyItemizedOverlay itemizedOverlay;
 	Drawable drawable;
@@ -67,13 +66,16 @@ public class DondeEstoyActivity  extends MapActivity implements LocationListener
 	private final OnClickListener shareListener = new OnClickListener() {
 		public void onClick(View v) {
 			Context ctx = DondeEstoyActivity.this;
-			AppDataLocalization app = (AppDataLocalization) ctx.getApplicationContext();
-			Intent i = new Intent(Intent.ACTION_SEND) ;
-			i.setType("text/html");
-			Coordenadas myPos = app.getCoordenadas();
-			//TODO poner la direccion en lugar de coordenadas
-			i.putExtra(android.content.Intent.EXTRA_TEXT,ctx.getString(R.string.my_pos_text)+ "( "+myPos.getLatitud()+" , "+myPos.getLongitud()+" )" );
-			ctx.startActivity(Intent.createChooser(i,ctx.getString(R.string.sharetext)));	
+			if(gPoint!=null){
+			TrackHelper.postMyPos(ctx, gPoint);
+			}
+//			AppDataLocalization app = (AppDataLocalization) ctx.getApplicationContext();
+//			Intent i = new Intent(Intent.ACTION_SEND) ;
+//			i.setType("text/html");
+//			Coordenadas myPos = app.getCoordenadas();
+//			//TODO poner la direccion en lugar de coordenadas
+//			i.putExtra(android.content.Intent.EXTRA_TEXT,ctx.getString(R.string.my_pos_text)+ "( "+myPos.getLatitud()+" , "+myPos.getLongitud()+" )" );
+//			ctx.startActivity(Intent.createChooser(i,ctx.getString(R.string.sharetext)));	
 		}
 	};
 	
@@ -95,10 +97,12 @@ public class DondeEstoyActivity  extends MapActivity implements LocationListener
 				.getLatitud() * 1E6), (int) (appState.getCoordenadas()
 				.getLongitud() * 1E6));
 		gPoint = myLocation;
-		OverlayItem overlayItem = new OverlayItem(myLocation, "Tú","");
+		OverlayItem overlayItem = new OverlayItem(myLocation, "Tú","http://graph.facebook.com/chuchu132/picture?type=square");
 		itemizedOverlay.deleteAll();
 		itemizedOverlay.addOverlay(overlayItem);
 		mapController.animateTo(myLocation);
+		Context ctx = DondeEstoyActivity.this;
+		TrackHelper.postMyPos(ctx, gPoint);
 		
 	}
 	
