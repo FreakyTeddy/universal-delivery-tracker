@@ -104,6 +104,31 @@ class Auth extends CI_Controller
 			$this->abstract_view('auth/login_form', $data);
 		}
 	}
+	
+	
+	
+	function login_mobile()
+	{
+		if ($this->tank_auth->is_logged_in()) {									// logged in
+			// YA ESTAS LOGUEADO
+				echo "1";
+		} else {
+			if ($this->tank_auth->login(
+						$this->input->post('login'),
+						$this->input->post('password'),
+						true,
+						true,
+						true)) {								// success
+				
+				//ME ACABO DE LOGUEAR
+					
+					echo "1";
+				} else {
+					echo "0";
+				}
+	}
+	}
+	
 
 	/**
 	 * Logout user
