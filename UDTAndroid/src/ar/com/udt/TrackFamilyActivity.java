@@ -53,7 +53,7 @@ public class TrackFamilyActivity  extends MapActivity {
 		mapView.setSatellite(true);
 		mapController = mapView.getController();
 		
-		GeoPoint point =  new GeoPoint(-33632078,-58372829);
+		GeoPoint point =  new GeoPoint(-34603683,-58381573);
 		mapController.setCenter(point);
 		mapController.setZoom(18);
 		

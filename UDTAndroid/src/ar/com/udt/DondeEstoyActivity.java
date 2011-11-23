@@ -52,7 +52,7 @@ public class DondeEstoyActivity  extends MapActivity implements LocationListener
 		overlays.clear();
 		overlays.add(itemizedOverlay);		
 		
-		GeoPoint point =  new GeoPoint(-33632078,-58372829);
+		GeoPoint point =  new GeoPoint(-34603683,-58381573);
 		mapController.setCenter(point);
 		mapController.setZoom(18);
 		share = (Button) findViewById(R.id.shareButton);
