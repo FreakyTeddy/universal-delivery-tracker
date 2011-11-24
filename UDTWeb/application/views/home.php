@@ -1,7 +1,5 @@
  <div id="mainPicture">
  	<div class="picture">
-    	<div id="headerTitle">Universal Delivery Tracker</div>
-        <div id="headerSubtext">Te encontraremos hasta donde no estas</div>
     </div>
 </div>
 <div class="contentBox">

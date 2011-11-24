@@ -6,7 +6,7 @@ body {
 	margin: 0;
 	padding: 0;
 	text-align: left;
-	font-family:"Adobe Garamond Pro Bold", Georgia, "Times New Roman", Times, serif;
+	font-family:"Verdana", Georgia, "Times New Roman", Times, serif;
 	font-size: 13px;
 	color: #061C37;
 	background: #014D5D url(../images/background.png);
@@ -38,7 +38,7 @@ height: 35px;
 line-height: 35px;
 float:left;
 color:#CEEAEE;
-font-family:"Adobe Garamond Pro Bold", Georgia, "Times New Roman", Times, serif;
+font-family:"Verdana", Georgia, "Times New Roman", Times, serif;
 }
 
 
@@ -93,17 +93,17 @@ top:80px;
 left:40px;
 font-size:25px;
 color:blue;
-font-family:"Adobe Garamond Pro Bold", Georgia, "Times New Roman", Times, serif;
+font-family:"Verdana", Georgia, "Times New Roman", Times, serif;
 }
 
 #headerSubtext
 {
 position:relative;
 top:100px;
-left:50px;
+left:30px;
 font-size:14px;
-color:#A9C8FA;
-font-family:"Adobe Garamond Pro Bold", Georgia, "Times New Roman", Times, serif;
+color:#000000;
+font-family:"Verdana", Georgia, "Times New Roman", Times, serif;
 }
 
 .contentBox
