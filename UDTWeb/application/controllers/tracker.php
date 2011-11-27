@@ -10,6 +10,7 @@ class Tracker extends CI_Controller
 		$this->load->library('form_validation');
 		$this->load->library('tank_auth');
 		$this->lang->load('tank_auth');
+		$this->load->model('ticket_model');
 		$this->load->model('track_model');
 		$this->load->model('track_history_model');
 		$this->load->helper('date');
@@ -24,6 +25,9 @@ class Tracker extends CI_Controller
 	
 	function map_tracker()
 	{
+	
+	error_log(print_r($this->track_model,true));
+	
 		$params=array();
 		$number = $this->input->post('tracker_number');
 		$params['latitud'] = -34.617528;//TODO HARCODE latitud 
@@ -37,6 +41,8 @@ class Tracker extends CI_Controller
         $this->load->view('main',$params);
     }
 	
+	
+	/**Guarda el reporte de un imei*/
 	public function track_user_pos(){
 		error_log(print_r($_POST,true));
 		$imei = $this->input->post('imei');
@@ -56,9 +62,52 @@ class Tracker extends CI_Controller
 					$this->track_model->save($data);
 					echo "SAVE";
 				}
-				
 		}
 	}
+	
+	
+	public function get_ticket_info(){
+		$user_id = $this->input->post('user_id');
+		$ticket_id = $this->input->post('ticket_id');
+		/* Deberia chequear si es un ticket publico, ej casa de empanadas 
+		o si se trata de un ticket que rastrea familiares o cosas de valor*/
+		$ticket = $this->ticket_model->get_by_id($ticket_id);
+		echo json_encode($ticket);
+	}
+	
+	public function get_ticket_coords(){
+		$user_id = $this->input->post('user_id');
+		$ticket_id = $this->input->post('ticket_id');
+		$tracks = $this->track_model->get_tracks_by_ticket($ticket_id);
+		echo json_encode($tracks);
+	}
+	
+	
+	public function get_family_info(){
+		$user_id = $this->input->post('user_id');
+		/* Deberia chequear si es un ticket publico, ej casa de empanadas 
+		o si se trata de un ticket que rastrea familiares o cosas de valor*/
+		$info = $this->ticket_model->get_family_ticket($user_id);
+		error_log( json_encode($info));
+		echo json_encode($info);
+	}
+	
+	public function get_family_coords(){
+		$ticket_id = $this->input->post('ticket_id');
+		$tracks = $this->track_model->get_family_tracks($ticket_id);
+		$json = "[";
+		
+		foreach($tracks as $track){
+			$json .= "{\"lat\": \"".$track['lat']."\", \"lon\":\"".$track['lon']."\" , \"descripcion\": ".$track['descripcion']."},";
+		}
+		$array = str_split($json,strlen($json)-1);
+		$json = $array[0];
+		$json .= "]";
+		error_log($json);
+		echo $json;
+	}
+	
+	
 }
 
 /* End of file welcome.php */

@@ -111,7 +111,7 @@ class Auth extends CI_Controller
 	{
 		if ($this->tank_auth->is_logged_in()) {									// logged in
 			// YA ESTAS LOGUEADO
-				echo "1";
+				echo $this->tank_auth->get_user_id();
 		} else {
 			if ($this->tank_auth->login(
 						$this->input->post('login'),
@@ -121,10 +121,9 @@ class Auth extends CI_Controller
 						true)) {								// success
 				
 				//ME ACABO DE LOGUEAR
-					
-					echo "1";
+					echo $this->tank_auth->get_user_id();
 				} else {
-					echo "0";
+					echo "-1";
 				}
 	}
 	}
