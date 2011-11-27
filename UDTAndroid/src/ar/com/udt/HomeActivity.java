@@ -20,6 +20,7 @@ public class HomeActivity extends Activity {
 	Button dondeEstoyButton;
 	Button trackFamilyButton;
 	Button trackTicketButton;
+	Button configButton;
 	int[] id_servicios = null;
 	
 	public void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,8 @@ public class HomeActivity extends Activity {
 	    trackFamilyButton.setOnClickListener(clicListener);
 	    trackTicketButton = (Button) findViewById(R.id.trackTicketButton);
 	    trackTicketButton.setOnClickListener(clicListener);
-	    
+	    configButton = (Button) findViewById(R.id.configbutton);
+	    configButton.setOnClickListener(clicListener);
 	    setEnabledButtons();
 	}
 	
@@ -41,13 +43,16 @@ public class HomeActivity extends Activity {
 		if(AppUserData.getInstance().esInvitado){
 			dondeEstoyButton.setEnabled(false);
 			trackFamilyButton.setEnabled(false);
+			configButton.setEnabled(false);
 		}else{
+			configButton.setEnabled(true);
 			dondeEstoyButton.setEnabled(false);
 			trackFamilyButton.setEnabled(false);
 			Timer t = new Timer();
 			t.schedule(new ServiciosTask(), 0);
 		}
 		trackTicketButton.setEnabled(true);
+
 	}
 
 	
@@ -84,6 +89,9 @@ public class HomeActivity extends Activity {
 				startActivity(i);
 			}else if( v==trackTicketButton){
 				Intent i = new Intent(HomeActivity.this, TrackTicketActivity.class);
+				startActivity(i);
+			}else if( v==configButton){
+				Intent i = new Intent(HomeActivity.this, ConfigurationActivity.class);
 				startActivity(i);
 			}
 		}

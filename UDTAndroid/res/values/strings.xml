@@ -27,4 +27,9 @@
     <string name="sharetext">Enviar Posición</string>
     <string name="my_pos_text">Hola, te envio mis coordenadas :</string>
     <string name="invitado">Invitado</string>
+    <string name="config_title">CONFIGURACIÓN</string>
+    <string name="trackmypos">Reportar mi posición</string>
+    <string name="interval">Frecuencia de Reporte</string>
+    <string name="guardar">Guardar Cambios</string>
+    <string name="cancel">Cancelar</string>
 </resources>

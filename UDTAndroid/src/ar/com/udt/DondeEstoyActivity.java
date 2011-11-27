@@ -67,15 +67,8 @@ public class DondeEstoyActivity  extends MapActivity implements LocationListener
 		public void onClick(View v) {
 			Context ctx = DondeEstoyActivity.this;
 			if(gPoint!=null){
-			DataHelper.getInstance().postMyPos(ctx, gPoint);
+				DataHelper.getInstance().postMyPos(ctx, gPoint);
 			}
-//			AppDataLocalization app = (AppDataLocalization) ctx.getApplicationContext();
-//			Intent i = new Intent(Intent.ACTION_SEND) ;
-//			i.setType("text/html");
-//			Coordenadas myPos = app.getCoordenadas();
-//			//TODO poner la direccion en lugar de coordenadas
-//			i.putExtra(android.content.Intent.EXTRA_TEXT,ctx.getString(R.string.my_pos_text)+ "( "+myPos.getLatitud()+" , "+myPos.getLongitud()+" )" );
-//			ctx.startActivity(Intent.createChooser(i,ctx.getString(R.string.sharetext)));	
 		}
 	};
 	
@@ -92,10 +85,7 @@ public class DondeEstoyActivity  extends MapActivity implements LocationListener
 	}
 	
 	public void onLocationChanged(Location location) {
-		AppDataLocalization appState = ((AppDataLocalization) getApplicationContext());
-		GeoPoint myLocation = new GeoPoint((int) (appState.getCoordenadas()
-				.getLatitud() * 1E6), (int) (appState.getCoordenadas()
-				.getLongitud() * 1E6));
+		GeoPoint myLocation = new GeoPoint((int)(location.getLatitude()*1E6), (int) (location.getLongitude()*1E6));
 		gPoint = myLocation;
 		OverlayItem overlayItem = new OverlayItem(myLocation, "Tú","http://graph.facebook.com/chuchu132/picture?type=square");
 		itemizedOverlay.deleteAll();
@@ -103,7 +93,6 @@ public class DondeEstoyActivity  extends MapActivity implements LocationListener
 		mapController.animateTo(myLocation);
 		Context ctx = DondeEstoyActivity.this;
 		DataHelper.getInstance().postMyPos(ctx, gPoint);
-		
 	}
 	
 

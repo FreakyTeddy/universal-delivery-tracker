@@ -34,6 +34,12 @@ public class LoginActivity extends Activity {
 		loginButton.setOnClickListener(loginClickListener);
 		registerButton.setOnClickListener(registerClickListener);
 		inviteButton.setOnClickListener(loginClickListener);
+		
+		
+		String e = AppUserData.getInstance().lastusername;
+		if(e.length()>0){
+			email.setText(e);
+		}
 	}
 	
 	private final OnClickListener loginClickListener =  new OnClickListener() {
@@ -41,6 +47,9 @@ public class LoginActivity extends Activity {
 			if(v == loginButton){
 			if(DataHelper.login(email.getText().toString(),password.getText().toString())){
 				AppUserData.getInstance().esInvitado = false;
+				AppDataLocalization app = (AppDataLocalization)getApplication();
+				AppUserData.getInstance().lastusername = email.getText().toString();
+				app.saveConfig();
 				Intent i =  new Intent(LoginActivity.this, HomeActivity.class);
 				startActivity(i);
 			}else{

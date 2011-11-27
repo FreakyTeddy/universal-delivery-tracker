@@ -107,7 +107,6 @@ public class TrackTicketActivity extends MapActivity {
 
 	class PositionTask extends TimerTask {
 		public void run() {
-			synchronized (ticketinfo) {
 				if (ticketinfo != null) {
 					try {
 						itemizedOverlay.deleteAll();
@@ -115,6 +114,9 @@ public class TrackTicketActivity extends MapActivity {
 								.getTicketCoords(
 										ticketinfo.getString("id_ticket"));
 						GeoPoint point = null;
+						if(coords == null){
+							return;
+						}
 						for (int i = 0; i < coords.length(); i++) {
 							JSONObject coord = coords.getJSONObject(i);
 							point = new GeoPoint(coord.getInt("lat"),
@@ -132,7 +134,6 @@ public class TrackTicketActivity extends MapActivity {
 					}
 				}
 			}
-		}
 	}
 
 	Handler h = new Handler() {
