@@ -14,7 +14,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import ar.com.udt.components.MyItemizedOverlay;
-import ar.com.udt.utils.TrackHelper;
+import ar.com.udt.utils.DataHelper;
 
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
@@ -67,7 +67,7 @@ public class DondeEstoyActivity  extends MapActivity implements LocationListener
 		public void onClick(View v) {
 			Context ctx = DondeEstoyActivity.this;
 			if(gPoint!=null){
-			TrackHelper.postMyPos(ctx, gPoint);
+			DataHelper.getInstance().postMyPos(ctx, gPoint);
 			}
 //			AppDataLocalization app = (AppDataLocalization) ctx.getApplicationContext();
 //			Intent i = new Intent(Intent.ACTION_SEND) ;
@@ -102,7 +102,7 @@ public class DondeEstoyActivity  extends MapActivity implements LocationListener
 		itemizedOverlay.addOverlay(overlayItem);
 		mapController.animateTo(myLocation);
 		Context ctx = DondeEstoyActivity.this;
-		TrackHelper.postMyPos(ctx, gPoint);
+		DataHelper.getInstance().postMyPos(ctx, gPoint);
 		
 	}
 	

@@ -1,19 +1,26 @@
 package ar.com.udt;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View.OnClickListener;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import ar.com.udt.config.AppUserData;
+import ar.com.udt.utils.DataHelper;
 
 public class HomeActivity extends Activity {
 
 	Button dondeEstoyButton;
 	Button trackFamilyButton;
 	Button trackTicketButton;
+	int[] id_servicios = null;
 	
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
@@ -26,7 +33,46 @@ public class HomeActivity extends Activity {
 	    trackFamilyButton.setOnClickListener(clicListener);
 	    trackTicketButton = (Button) findViewById(R.id.trackTicketButton);
 	    trackTicketButton.setOnClickListener(clicListener);
+	    
+	    setEnabledButtons();
 	}
+	
+	private void setEnabledButtons() {
+		if(AppUserData.getInstance().esInvitado){
+			dondeEstoyButton.setEnabled(false);
+			trackFamilyButton.setEnabled(false);
+		}else{
+			dondeEstoyButton.setEnabled(false);
+			trackFamilyButton.setEnabled(false);
+			Timer t = new Timer();
+			t.schedule(new ServiciosTask(), 0);
+		}
+		trackTicketButton.setEnabled(true);
+	}
+
+	
+	Handler h = new Handler(){
+		public void handleMessage(android.os.Message msg) {
+			if(id_servicios!=null){
+				for (int i = 0; i < id_servicios.length; i++) {
+					switch (id_servicios[i]) {
+					case Config.DONDE_ESTOY_SERVICE_ID:
+						dondeEstoyButton.setEnabled(true);
+						break;
+					case Config.TRACK_FAMILIAR_SERVICE_ID:
+						trackFamilyButton.setEnabled(true);
+						break;
+					}
+				}
+			}
+		};
+	};
+	class ServiciosTask extends TimerTask{
+		public void run() {
+			id_servicios = DataHelper.getInstance().getServiciosHabilitados();
+			h.sendEmptyMessage(0);
+		}
+	} 
 	
 	private final OnClickListener clicListener = new OnClickListener() {
 		public void onClick(View v) {

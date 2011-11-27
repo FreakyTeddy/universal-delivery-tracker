@@ -9,13 +9,15 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import ar.com.udt.config.AppUserData;
+import ar.com.udt.utils.DataHelper;
 import ar.com.udt.utils.DialogFactory;
-import ar.com.udt.utils.TrackHelper;
 
 public class LoginActivity extends Activity {
 
 	private Button loginButton;
 	private Button registerButton;
+	private Button inviteButton;
 	private EditText email;
 	private EditText password;
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,19 +29,28 @@ public class LoginActivity extends Activity {
 		password = (EditText) findViewById(R.id.password);
 		loginButton = (Button) findViewById(R.id.login_button);
 		registerButton = (Button) findViewById(R.id.register_button);
+		inviteButton = (Button) findViewById(R.id.inviteButton);
 		
 		loginButton.setOnClickListener(loginClickListener);
 		registerButton.setOnClickListener(registerClickListener);
+		inviteButton.setOnClickListener(loginClickListener);
 	}
 	
 	private final OnClickListener loginClickListener =  new OnClickListener() {
 		public void onClick(View v) {
-			if(TrackHelper.login(email.getText().toString(),password.getText().toString())){
+			if(v == loginButton){
+			if(DataHelper.login(email.getText().toString(),password.getText().toString())){
+				AppUserData.getInstance().esInvitado = false;
 				Intent i =  new Intent(LoginActivity.this, HomeActivity.class);
 				startActivity(i);
 			}else{
 				DialogFactory.getFactory().getDialogAcept(LoginActivity.this, "ERROR", "Los datos ingresados son incorrectos.");
 				
+			}
+			}else{
+				AppUserData.getInstance().esInvitado = true;
+				Intent i =  new Intent(LoginActivity.this, HomeActivity.class);
+				startActivity(i);
 			}
 		}
 	};

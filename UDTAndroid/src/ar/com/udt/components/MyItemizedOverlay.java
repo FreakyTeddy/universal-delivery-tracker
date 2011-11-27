@@ -17,6 +17,7 @@ public class MyItemizedOverlay extends BalloonItemizedOverlay<OverlayItem> {
 	
 	public MyItemizedOverlay(Drawable defaultMarker, MapView mapView) {
 		super(boundCenter(defaultMarker), mapView);
+		populate();
 		c = mapView.getContext();
 	}
 
@@ -31,6 +32,7 @@ public class MyItemizedOverlay extends BalloonItemizedOverlay<OverlayItem> {
 	}
 	
 	public void deleteAll(){
+		super.hideBalloon();
 		m_overlays.clear();
 	}
 
