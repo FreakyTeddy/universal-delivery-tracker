@@ -23,26 +23,6 @@
 
 </TextView>
 </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="fill_parent"
-        android:layout_height="48dp"
-        android:background="@drawable/backgroud_puntos" android:gravity="center" android:padding="10px">
-
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/miembro" android:textColor="#ffffff" android:textSize="20dip" android:textStyle="bold" android:typeface="sans" android:layout_marginRight="10px" android:layout_marginLeft="10px"/>
-
-        <Spinner
-            android:id="@+id/spinnerFamilia"
-            android:layout_width="210px"
-            android:layout_height="62px"
-            android:background="@drawable/combo_bg" />
-
-    </LinearLayout>
     
     <com.google.android.maps.MapView
         android:id="@+id/mapview"

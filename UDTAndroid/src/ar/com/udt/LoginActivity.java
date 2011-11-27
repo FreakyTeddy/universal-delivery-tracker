@@ -2,6 +2,7 @@ package ar.com.udt;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View.OnClickListener;
 import android.view.View;
@@ -34,8 +35,6 @@ public class LoginActivity extends Activity {
 		loginButton.setOnClickListener(loginClickListener);
 		registerButton.setOnClickListener(registerClickListener);
 		inviteButton.setOnClickListener(loginClickListener);
-		
-		
 		String e = AppUserData.getInstance().lastusername;
 		if(e.length()>0){
 			email.setText(e);
@@ -66,8 +65,8 @@ public class LoginActivity extends Activity {
 	
 	private final OnClickListener registerClickListener =  new OnClickListener() {
 		public void onClick(View v) {
-			Intent i =  new Intent(LoginActivity.this, RegisterActivity.class);
-			startActivity(i);
+			Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Config.BASEURL + Config.REGISTER_CONTROLLER));
+			startActivity(myIntent);
 		}
 	};
 }

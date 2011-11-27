@@ -2,6 +2,7 @@ package ar.com.udt;
 
 public class Config {
 	public static final String BASEURL = "http://www.abarbieri.com.ar/index.php/";
+	public static final String REGISTER_CONTROLLER = "auth/register";
 	public static final String TRACKER_CONTROLLER = "tracker/";
 	public static final String AUTH_CONTROLLER = "auth/";
 	public static final String SERVICIOS_CONTROLLER = "servicios/";

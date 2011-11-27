@@ -13,11 +13,11 @@
     <string name="acceptterms">Acepto Terminos y Condiciones</string>
     <string name="home_tittle">HOME</string>
     <string name="track_ticket">Rastrear Ticket</string>
-    <string name="track_family">Rastrear Familiar</string>
+    <string name="track_family">Rastrear Familia</string>
     <string name="dondeestoy">¿ Donde estoy ?</string>
     <string name="config">Configuracion</string>
     <string name="dondeestoy_title">¿DONDE ESTOY?</string>
-    <string name="track_family_title">RASTREAR FAMILIAR</string>
+    <string name="track_family_title">RASTREAR FAMILIA</string>
     <string name="miembro">Familiar</string>
     <string name="all_family">Todos</string>
     <string name="tracktickettitle">RASTREAR TICKET</string>

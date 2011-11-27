@@ -14,7 +14,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Spinner;
 import ar.com.udt.components.MyItemizedOverlay;
 import ar.com.udt.utils.DataHelper;
 
@@ -31,8 +30,6 @@ public class TrackFamilyActivity extends MapActivity {
 	MapController mapController;
 	JSONArray familiares = null;
 
-	Spinner spinnerFamilia;
-
 	Drawable drawable;
 	MyItemizedOverlay itemizedOverlay;
 	JSONObject ticketinfo;
@@ -48,19 +45,14 @@ public class TrackFamilyActivity extends MapActivity {
 		mapView.setBuiltInZoomControls(true);
 		mapView.setSatellite(true);
 		mapController = mapView.getController();
-
 		GeoPoint point = new GeoPoint(-34603683, -58381573);
 		mapController.setCenter(point);
 		mapController.setZoom(10);
-
 		drawable = getResources().getDrawable(R.drawable.marker);
 		itemizedOverlay = new MyItemizedOverlay(drawable, mapView);
 		List<Overlay> overlays = mapView.getOverlays();
 		overlays.clear();
 		overlays.add(itemizedOverlay);
-
-		// cargarDatosFamilia();
-
 	}
 
 	protected boolean isRouteDisplayed() {
@@ -79,38 +71,6 @@ public class TrackFamilyActivity extends MapActivity {
 		t.start();
 	}
 
-//	private void cargarDatosFamilia() {
-//		familiares = DataHelper.getInstance().getFamiliaresByClentId("Sarasa");
-//		for (Persona familiar : familiares) {
-//			Coordenadas c = familiar.getPosicion();
-//			GeoPoint point = new GeoPoint((int) (c.getLatitud() * 1E6),
-//					(int) (c.getLongitud() * 1E6));
-//			OverlayItem overlayItem = new OverlayItem(point,
-//					familiar.getUsername(), familiar.getUrlImage());
-//			itemizedOverlay.addOverlay(overlayItem);
-//		}
-//		spinnerFamilia = (Spinner) findViewById(R.id.spinnerFamilia);
-//		FamiliaresSpinnerAdapter adapter = new FamiliaresSpinnerAdapter(this,
-//				familiares);
-//		spinnerFamilia.setAdapter(adapter);
-//		spinnerFamilia.setOnItemSelectedListener(new OnItemSelectedListener() {
-//			public void onItemSelected(AdapterView<?> parentView,
-//					View selectedItemView, int position, long id) {
-//				Persona p = (Persona) spinnerFamilia.getSelectedItem();
-//				if (p != null) {
-//					Coordenadas c = p.getPosicion();
-//					GeoPoint point = new GeoPoint((int) (c.getLatitud() * 1E6),
-//							(int) (c.getLongitud() * 1E6));
-//					mapController.animateTo(point);
-//				}
-//			}
-//
-//			public void onNothingSelected(AdapterView<?> parentView) {
-//
-//			}
-//
-//		});
-//	}
 
 	class PositionTask extends TimerTask {
 		public void run() {
@@ -125,9 +85,6 @@ public class TrackFamilyActivity extends MapActivity {
 							return;
 						}
 						h.sendEmptyMessage(1);
-						
-						
-
 					} catch (JSONException e) {
 						e.printStackTrace();
 					}

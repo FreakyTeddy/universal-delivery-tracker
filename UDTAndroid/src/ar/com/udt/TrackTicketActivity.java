@@ -8,6 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,6 +17,7 @@ import android.view.View.OnClickListener;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -70,7 +72,7 @@ public class TrackTicketActivity extends MapActivity {
 		GeoPoint point = new GeoPoint(-34603683, -58381573);
 		mapController.setCenter(point);
 		mapController.setZoom(18);
-
+		trackButton.requestFocus();
 	}
 
 	protected boolean isRouteDisplayed() {
@@ -84,6 +86,8 @@ public class TrackTicketActivity extends MapActivity {
 				int i = Integer.parseInt(text);
 				Thread t = new Thread(new GetTicket(i));
 				t.start();
+				InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.hideSoftInputFromWindow(tracktext.getWindowToken(),0);
 			} catch (Exception e) {
 				DialogFactory.getFactory().getDialogAcept(
 						TrackTicketActivity.this, "ERROR", "Ticket Invalido");
