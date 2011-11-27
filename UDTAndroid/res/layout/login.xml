@@ -48,7 +48,7 @@
             android:hint="@string/input_mail"
             android:inputType="textEmailAddress"
             android:maxLines="1"
-            android:textColor="#000000">
+            android:textColor="#000000" >
 
             <requestFocus />
         </EditText>
@@ -68,7 +68,8 @@
             android:id="@+id/linearLayout2"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:gravity="center" android:layout_marginTop="10px">
+            android:layout_marginTop="10px"
+            android:gravity="center" >
 
             <Button
                 android:id="@+id/login_button"
@@ -96,6 +97,19 @@
                 android:textSize="15dip"
                 android:textStyle="bold"
                 android:typeface="sans" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" android:gravity="center" android:layout_marginTop="10px">
+
+            <Button
+                android:id="@+id/inviteButton"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_normal"
+                android:text="@string/invitado" android:padding="5px" android:textColor="#ffffff" android:textSize="15dip" android:textStyle="bold" android:typeface="sans"/>
 
         </LinearLayout>
     </LinearLayout>

@@ -30,14 +30,14 @@
     android:layout_height="fill_parent"
     android:gravity="center|center_horizontal"
     android:orientation="vertical"
-    android:paddingTop="20px" >
+    android:paddingTop="20px">
 
     <Button
         android:id="@+id/trackTicketButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10px"
-        android:background="@drawable/btn_normal"
+        android:background="@drawable/boton"
         android:padding="5px"
         android:text="@string/track_ticket"
         android:textColor="#ffffff"
@@ -50,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10px"
-        android:background="@drawable/btn_normal"
+        android:background="@drawable/boton"
         android:padding="5px"
         android:text="@string/track_family"
         android:textColor="#ffffff"
@@ -63,7 +63,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10px"
-        android:background="@drawable/btn_normal"
+        android:background="@drawable/boton"
         android:padding="5px"
         android:text="@string/dondeestoy"
         android:textColor="#ffffff"
@@ -75,7 +75,7 @@
         android:id="@+id/Button01"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/btn_normal"
+        android:background="@drawable/boton"
         android:padding="5px"
         android:text="@string/config"
         android:textColor="#ffffff"

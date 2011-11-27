@@ -86,14 +86,13 @@
         android:id="@+id/scrollView1"
         android:layout_width="fill_parent"
         android:layout_height="100dip" android:background="@drawable/backgroud_puntos">
-
+
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/descripcion"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:background="#00ffffff"
             android:gravity="center"
-            android:text="@string/latin"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#ffffff"
             android:textStyle="bold"
