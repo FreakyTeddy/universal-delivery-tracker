@@ -10,7 +10,7 @@
 	<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     
     <application
-        android:debuggable="true"
+        android:debuggable="false"
         android:icon="@drawable/udticon"
         android:label="@string/app_name" android:name="AppDataLocalization">
         <uses-library android:name="com.google.android.maps" />
