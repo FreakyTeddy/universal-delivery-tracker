@@ -1,18 +1,21 @@
 package ar.com.udt;
 
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View.OnClickListener;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextView;
 import ar.com.udt.components.MyItemizedOverlay;
 import ar.com.udt.utils.DataHelper;
 
@@ -23,16 +26,16 @@ import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
 
-public class DondeEstoyActivity  extends MapActivity implements LocationListener{
+public class DondeEstoyActivity  extends MapActivity{
 
 	MapView mapView;
 	MapController mapController;
-	private LocationManager locationManager;
 	GeoPoint gPoint = null;
 	MyItemizedOverlay itemizedOverlay;
 	Drawable drawable;
-	
+	TextView address; 
 	Button share;
+	Timer timer ;
 	protected void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -43,9 +46,7 @@ public class DondeEstoyActivity  extends MapActivity implements LocationListener
 		mapView.setSatellite(true);
 		mapController = mapView.getController();
 		
-		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-		
-		
+		address = (TextView) findViewById(R.id.address);
 		drawable = getResources().getDrawable(R.drawable.marker);
 		itemizedOverlay = new MyItemizedOverlay(drawable, mapView);
 		List<Overlay> overlays = mapView.getOverlays();
@@ -66,47 +67,57 @@ public class DondeEstoyActivity  extends MapActivity implements LocationListener
 	private final OnClickListener shareListener = new OnClickListener() {
 		public void onClick(View v) {
 			Context ctx = DondeEstoyActivity.this;
-			if(gPoint!=null){
-				DataHelper.getInstance().postMyPos(ctx, gPoint);
-			}
+			Intent i = new Intent(Intent.ACTION_SEND) ;
+			i.setType("text/html");
+			i.putExtra(android.content.Intent.EXTRA_TEXT,ctx.getString(R.string.my_pos_text)+ address.getText() );
+			ctx.startActivity(Intent.createChooser(i,ctx.getString(R.string.sharetext)));
 		}
 	};
 	
 	protected void onResume() {
 		super.onResume();
-			if (locationManager != null) {
-				locationManager.requestLocationUpdates(
-						LocationManager.NETWORK_PROVIDER, 1000, 50, this);
-			}
+		if(timer != null){
+			timer.cancel();
+		}
+		timer =  new Timer();
+		timer.schedule(new UpdateMapTask(), 0,10000);
 	}
+	
 	
 	protected boolean isRouteDisplayed() {
 		return true;
 	}
 	
-	public void onLocationChanged(Location location) {
-		GeoPoint myLocation = new GeoPoint((int)(location.getLatitude()*1E6), (int) (location.getLongitude()*1E6));
-		gPoint = myLocation;
-		OverlayItem overlayItem = new OverlayItem(myLocation, "Tú","http://graph.facebook.com/chuchu132/picture?type=square");
-		itemizedOverlay.deleteAll();
-		itemizedOverlay.addOverlay(overlayItem);
-		mapController.animateTo(myLocation);
-		Context ctx = DondeEstoyActivity.this;
-		DataHelper.getInstance().postMyPos(ctx, gPoint);
-	}
-	
-
-	public void onProviderDisabled(String provider) {
+	class UpdateMapTask extends TimerTask {
+		public void run() {
+			Location l  = ((AppDataLocalization)getApplication()).getLastLocation();
+			if(l != null ){
+				gPoint = new GeoPoint((int)(l.getLatitude()*1E6), (int) (l.getLongitude()*1E6));
+			 		h.sendEmptyMessage(0);
+			 		h.sendEmptyMessage(1);
+			}
+		}
 	}
 
-	public void onProviderEnabled(String provider) {
+	Handler h = new Handler(){
+		public void handleMessage(android.os.Message msg) {
+			if(msg.what == 0){
+				OverlayItem overlayItem = new OverlayItem(gPoint, "Tú","");
+				itemizedOverlay.deleteAll();
+				itemizedOverlay.addOverlay(overlayItem);
+				mapController.animateTo(gPoint);
+				Context ctx = DondeEstoyActivity.this;
+				DataHelper.getInstance().postMyPos(ctx, gPoint);
+			}
+			if(msg.what == 1){
+				String add = DataHelper.getInstance().getAddress(gPoint);
+				if(add != null){
+					address.setText(add);
+				}		
+			}
+		};
+	};
 
-	}
-
-	public void onStatusChanged(String provider, int status, Bundle extras) {
-
-	}
-	
 	
 
 }

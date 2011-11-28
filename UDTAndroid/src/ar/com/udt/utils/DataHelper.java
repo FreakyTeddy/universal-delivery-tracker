@@ -7,15 +7,11 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import com.google.android.maps.GeoPoint;
-
 import android.content.Context;
 import android.telephony.TelephonyManager;
 import ar.com.udt.Config;
-import ar.com.udt.Coordenadas;
 import ar.com.udt.config.AppUserData;
-import ar.com.udt.model.Persona;
 
 public class DataHelper {
 
@@ -33,18 +29,6 @@ public class DataHelper {
 		INSTANCE;
 	}
 	
-	public  ArrayList<Persona> getFamiliaresByClentId(String id){
-		ArrayList<Persona> pipol =  new ArrayList<Persona>();
-		Persona tmp = new Persona(1,"chuchu132", new Coordenadas(-34.584747,-58.400059), "http://graph.facebook.com/chuchu132/picture?type=square", "Soy Ale");
-		pipol.add(tmp);
-		tmp = new Persona(7,"clauchis", new Coordenadas(-34.586337,-58.401947), "http://graph.facebook.com/nimda/picture?type=square", "Soy Clauchis");
-		pipol.add(tmp);
-		tmp = new Persona(3,"clau", new Coordenadas(-34.585418,-58.416109), "http://graph.facebook.com/claudia.korzeniewski/picture?type=square", "Soy Clau");
-		pipol.add(tmp);
-		tmp = new Persona(6,"leo", new Coordenadas(-34.593897,-58.414521), "http://graph.facebook.com/leo.decaria/picture?type=square", "Soy Leito de los wachiturros");
-		pipol.add(tmp);
-		return pipol;
-	}
 	
 	public static boolean login(String user, String password){
 		ArrayList<NameValuePair> par = new ArrayList<NameValuePair>();
@@ -138,6 +122,23 @@ public class DataHelper {
 		par.add(new BasicNameValuePair("lon", ""+myPos.getLongitudeE6()));
 		String resp = HttpHelper.postData(Config.BASEURL + Config.TRACKER_CONTROLLER + "track_user_pos", par);
 		System.out.println("resp del post: " + resp);
+	}
+	
+	public String getAddress(GeoPoint gp ){
+		ArrayList<NameValuePair> par = new ArrayList<NameValuePair>();
+		String resp = HttpHelper.postData(Config.MAPS_API_URL + gp.getLatitudeE6()/1E6 + ","+gp.getLongitudeE6()/1E6, par);
+		System.out.println("resp del post: " + resp);
+		try {
+			JSONObject response = new JSONObject(resp);
+			String status = response.getString("status");
+			if(status.equals("OK")){
+				JSONArray results = response.getJSONArray("results");
+				return results.getJSONObject(0).getString("formatted_address");
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return null ;
 	}
 	
 }
