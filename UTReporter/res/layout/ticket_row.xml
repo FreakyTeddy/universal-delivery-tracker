@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" android:paddingBottom="5px" android:gravity="center_horizontal">
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_row"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10px" >
+
+        <TextView
+            android:id="@+id/id"
+            android:layout_width="60dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="#fff"
+            android:textSize="15dip"
+            android:textStyle="bold"
+            android:typeface="sans" android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/desc"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="#fff"
+            android:textSize="15dip"
+            android:textStyle="bold"
+            android:typeface="sans" android:gravity="center"/>
+
+    </LinearLayout>
+
+</TableRow>

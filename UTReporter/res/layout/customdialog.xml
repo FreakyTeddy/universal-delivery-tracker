@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/layout_root" android:background="@drawable/background_dialog" android:gravity="center_horizontal" android:layout_width="fill_parent" android:padding="10dip" android:orientation="vertical" android:layout_height="wrap_content" android:minWidth="360px" android:minHeight="200px">
+    <TextView android:textColor="#ffffff" android:textStyle="bold" android:typeface="sans" android:text="TITULO!!" android:layout_height="wrap_content" android:id="@+id/titulo" android:layout_width="wrap_content" android:layout_weight="0"></TextView>
+    <LinearLayout android:layout_width="fill_parent" android:id="@+id/linearLayout2" android:orientation="vertical" android:gravity="top" android:layout_height="100px">
+        <TextView android:text="Texto de prueba, si se ve esto es xq nadie se lo cambio!" android:layout_width="fill_parent" android:textColor="#ffffff" android:id="@+id/texto" android:typeface="sans" android:gravity="center" android:layout_height="fill_parent"></TextView>
+    </LinearLayout>
+    <Button android:id="@+id/cerrar" android:background="@drawable/boton_naranja_normal" android:text="CERRAR" android:textColor="#ffffff" android:textStyle="bold" android:typeface="sans" android:paddingBottom="5dip" android:paddingTop="5dip" android:paddingLeft="15dip" android:paddingRight="15dip" android:layout_height="50px" android:layout_width="160px"></Button>
+    
+</LinearLayout>
