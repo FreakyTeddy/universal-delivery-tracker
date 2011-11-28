@@ -52,11 +52,7 @@ public class AppDataLocalization extends Application implements
 	}
 	
 	public void onLocationChanged(Location location) {
-         String message = String.format(
-                 "New Location \n Longitude: %1$s \n Latitude: %2$s",
-                 location.getLongitude(), location.getLatitude()
-         );
-         Toast.makeText(AppDataLocalization.this, message, Toast.LENGTH_LONG).show();
+      
      }
 
      public void onStatusChanged(String s, int i, Bundle b) {
