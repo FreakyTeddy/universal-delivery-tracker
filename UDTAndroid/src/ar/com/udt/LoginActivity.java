@@ -39,6 +39,7 @@ public class LoginActivity extends Activity {
 		if(e.length()>0){
 			email.setText(e);
 		}
+		((AppDataLocalization)getApplication()).startListen();
 	}
 	
 	private final OnClickListener loginClickListener =  new OnClickListener() {
@@ -68,5 +69,10 @@ public class LoginActivity extends Activity {
 			Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Config.BASEURL + Config.REGISTER_CONTROLLER));
 			startActivity(myIntent);
 		}
+	};
+	
+	protected void onDestroy() {
+		((AppDataLocalization)getApplication()).stopListen();
+		super.onDestroy();
 	};
 }
