@@ -27,13 +27,9 @@ public class AppDataLocalization extends Application implements
 				.getInt("frecuencia", 10);
 
 		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-		locationManager.requestLocationUpdates(
-		LocationManager.GPS_PROVIDER,
-		Config.MINIMUM_TIME_BETWEEN_UPDATES,
-		Config.MINIMUM_DISTANCE_CHANGE_FOR_UPDATES,
-		this
-		);
-
+		
+		
+		System.out.println("CREA APP");
 	}
 
 	public void saveConfig() {
@@ -46,6 +42,21 @@ public class AppDataLocalization extends Application implements
 		editor.commit();
 	}
 
+	public void startListen(){
+		locationManager.requestLocationUpdates(
+				LocationManager.GPS_PROVIDER,
+				Config.MINIMUM_TIME_BETWEEN_UPDATES,
+				Config.MINIMUM_DISTANCE_CHANGE_FOR_UPDATES,
+				this
+				);
+		System.out.println("START LSTEN");
+	}
+	
+	public void stopListen(){
+		System.out.println("STOP LISTEN");
+		locationManager.removeUpdates(this);
+	}
+	
 	
 	public Location getLastLocation(){
 		return locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
@@ -56,8 +67,6 @@ public class AppDataLocalization extends Application implements
      }
 
      public void onStatusChanged(String s, int i, Bundle b) {
-         Toast.makeText(AppDataLocalization.this, "Provider status changed",
-                 Toast.LENGTH_LONG).show();
      }
 
      public void onProviderDisabled(String s) {

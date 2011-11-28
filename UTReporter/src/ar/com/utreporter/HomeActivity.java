@@ -68,6 +68,7 @@ public class HomeActivity extends Activity {
 		if(timer != null){
 			timer.cancel();
 		}
+		
 		super.onDestroy();
 	}
 
