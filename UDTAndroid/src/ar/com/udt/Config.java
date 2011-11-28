@@ -7,7 +7,7 @@ public class Config {
 	/* GEOLOCATION API*/
 	public static final String MAPS_API_URL = "http://maps.google.com/maps/api/geocode/json?sensor=false&latlng=";
 	/* UT SERVER*/
-	public static final String BASEURL = "http://www.abarbieri.com.ar/index.php/";
+	public static final String BASEURL = "http://www.universaltracker.com.ar/index.php/";
 	public static final String REGISTER_CONTROLLER = "auth/register";
 	public static final String TRACKER_CONTROLLER = "tracker/";
 	public static final String AUTH_CONTROLLER = "auth/";
