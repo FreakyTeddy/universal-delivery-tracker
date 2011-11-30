@@ -25,6 +25,12 @@ class Welcome extends CI_Controller
 		}*/
 	}
 	
+	
+	function products(){
+		$params=array();
+		$this->abstract_view($params,"products");
+	}
+	
 	public function abstract_view($params,$view){
     	$params["current_view"] = $view;
         $this->load->view('main',$params);

@@ -9,7 +9,7 @@
 
 <!-- Google Maps Api.-->
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-	
+<script src="http://cdn.jquerytools.org/1.2.6/all/jquery.tools.min.js"></script> 	
 <script type="text/javascript" src="<?=base_url()?>js/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
 <script type="text/javascript" src="<?=base_url()?>js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
 <script type="text/javascript" src="<?=base_url()?>js/jquery.gmap-1.1.0.js"></script>
@@ -21,7 +21,7 @@
 <body>
     <div id="page">
         <div class="topNaviagationLink"><?php echo anchor('/welcome/index', 'Inicio'); ?></div>
-        <div class="topNaviagationLink"><?php echo anchor('', 'Productos'); ?></div>
+        <div class="topNaviagationLink"><?php echo anchor('/welcome/products', 'Productos'); ?></div>
         <div class="topNaviagationLink"><?php echo anchor('/tracker/index/', 'Trackear'); ?></div>
         <div class="topNaviagationLink"><?php echo anchor('', 'Contactenos'); ?></div>
         <?php if ( $this->tank_auth->is_logged_in() ) { ?>

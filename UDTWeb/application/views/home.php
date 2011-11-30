@@ -4,24 +4,21 @@
 </div>
 <div class="contentBox">
 	<div class="innerBox">
-        <div class="contentTitle">The Title of an Article</div>
+		<div class="contentTitle">NUESTRO OBJETIVO</div>
 	    <div class="contentText">
-	        <p>You may use this template on any site, anywhere, for free just please leave the link back to me in the footer.   This template validates XHTML Strict 1.0, CSS Validates as well; enjoy :) </p><br />
-		    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Integer mi. Vivamus sit amet neque vitae sapien bibendum sodales. Curabitur elementum. Duis imperdiet. Donec eleifend porttitor sapien. Praesent leo. Quisque auctor velit sed tellus. Suspendisse potenti. Aenean laoreet imperdiet nunc. Donec commodo suscipit dolor. Aenean nibh. Sed id odio. Aliquam lobortis risus ut felis. Sed vehicula pellentesque quam.</p><br />
-		    <p>Vestibulum augue quam, interdum id, congue semper, convallis non, velit. Quisque augue tortor, tristique ac, scelerisque eget, aliquam id, sem. Aenean lorem. Fusce velit nibh, dapibus quis, laoreet nec, porta a, dui. Nullam ac urna. Proin eget elit. Nunc scelerisque venenatis urna. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce congue, turpis ut commodo mattis, pede erat fringilla tellus, pulvinar suscipit odio lorem sed pede.</p>
-		</div>
-	    <div class="contentTitle">So Many Titles, So Little Time.</div>
-	    <div class="contentText">
-	        <p>You may use this template on any site, anywhere, for free just please leave the link back to me in the footer.   This template validates XHTML Strict 1.0, CSS Validates as well; enjoy :) </p><br />
-		    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Integer mi. Vivamus sit amet neque vitae sapien bibendum sodales. Curabitur elementum. Duis imperdiet. Donec eleifend porttitor sapien. Praesent leo. Quisque auctor velit sed tellus. Suspendisse potenti. Aenean laoreet imperdiet nunc. Donec commodo suscipit dolor. Aenean nibh. Sed id odio. Aliquam lobortis risus ut felis. Sed vehicula pellentesque quam.</p><br />
-		    <p>Vestibulum augue quam, interdum id, congue semper, convallis non, velit. Quisque augue tortor, tristique ac, scelerisque eget, aliquam id, sem. Aenean lorem. Fusce velit nibh, dapibus quis, laoreet nec, porta a, dui. Nullam ac urna. Proin eget elit. Nunc scelerisque venenatis urna. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce congue, turpis ut commodo mattis, pede erat fringilla tellus, pulvinar suscipit odio lorem sed pede.</p>
+	        <p>Desarrollar un servicio de rastreo de envíos y seguimiento en tiempo real para una amplia variedad de empresas, casa de comidas, etc. que cuenten con servicio de tipo delivery o bien a particulares para seguimiento personal.</p>
 	    </div>
-		<div class="contentTitle">Yet Another  One!</div>
-        <div class="contentText">
-        	<p>You may use this template on any site, anywhere, for free just please leave the link back to me in the footer.   This template validates XHTML Strict 1.0, CSS Validates as well; enjoy :) </p><br />
-        	<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Integer mi. Vivamus sit amet neque vitae sapien bibendum sodales. Curabitur elementum. Duis imperdiet. Donec eleifend porttitor sapien. Praesent leo. Quisque auctor velit sed tellus. Suspendisse potenti. Aenean laoreet imperdiet nunc. Donec commodo suscipit dolor. Aenean nibh. Sed id odio. Aliquam lobortis risus ut felis. Sed vehicula pellentesque quam.</p><br />
-          	<p>Vestibulum augue quam, interdum id, congue semper, convallis non, velit. Quisque augue tortor, tristique ac, scelerisque eget, aliquam id, sem. Aenean lorem. Fusce velit nibh, dapibus quis, laoreet nec, porta a, dui. Nullam ac urna. Proin eget elit. Nunc scelerisque venenatis urna. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce congue, turpis ut commodo mattis, pede erat fringilla tellus, pulvinar suscipit odio lorem sed pede.</p>
-        </div>
+        <div class="contentTitle">EL SERVICIO TRACKER</div>
+	    <div class="contentText">
+		    <br>
+		        <p>- El servicio de Universal Tracker consta de 5 partes -</p>    
+		     <br>
+			<p>1) Una página web integrada al sitio web de la empresa cliente como la imágen anterior, en la cual se incluye un mapa donde se pueda visualizar la posición reportada.</p> 
+			<p>2) Un servidor que recibe los reportes y los procesa, administra las suscripciones al sistema, genera códigos de seguimiento. </p>
+			<p>3) Una página para cargar/ver el estado de los pedidos y generar números de orden de seguimiento o una aplicación cliente que permita esta misma funcionalidad.</p>
+			<p>4) Una aplicación instalada en los dispositivos móviles de los repartidores ( es decir, en el móvil de la persona a la que se está siguiendo), que se ocupa de reportar la ubicación y además cuenta con un servicio de mensajería entre el repartidor y la sucursal. La aplicación correría en background y permitiría configurar ciertos parámetros de forma local o remota (activación, intervalo de reportes, etc.).</p>
+			<p>5) Una aplicación móvil de UDT genérica donde cualquier cliente ingresa un número de orden y puede ver la ubicación. Funciona de la misma forma que la página web, mostrando el reporte de ubicación.</p> 
+		</div>
 	</div>
 </div>
 	

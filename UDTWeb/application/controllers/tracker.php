@@ -108,22 +108,6 @@ class Tracker extends CI_Controller
 	}
 	
 	
-	public function get_tickets_by_client_device(){
-		$user_id = $this->input->post('user_id');
-		$imei = $this->input->post('imei');
-		$tickets = $this->ticket_model->get_tickets_by_client_device($user_id,$imei);
-		error_log( json_encode($tickets));
-		echo json_encode($tickets);
-	}
-	
-	public function set_ticket_entregado(){
-		$user_id = $this->input->post('user_id');
-		$imei = $this->input->post('imei');
-		$ticket_id = $this->input->post('ticket_id');
-		error_log("marcar ticket: ".$ticket_id);
-		echo $this->ticket_model->set_ticket_entregado($user_id,$imei,$ticket_id);
-	}
-	
 }
 
 /* End of file welcome.php */
