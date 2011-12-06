@@ -29,11 +29,28 @@ class Tracker extends CI_Controller
 	error_log(print_r($this->track_model,true));
 	
 		$params=array();
-		$number = $this->input->post('tracker_number');
-		$params['latitud'] = -34.617528;//TODO HARCODE latitud 
-		$params['altitud'] = -58.368022;//TODO HARCODE altitud
-
-		$this->abstract_view($params,"map_tracker");
+		$ticket_id = $this->input->post('tracker_number');
+		$tracks =null;
+		if($ticket_id){
+			$trackinfo = $this->ticket_model->get_by_id($ticket_id);
+			if($trackinfo){
+			$params['descripcion'] = $trackinfo['descripcion'];
+			$tracks = $this->track_model->get_tracks_by_ticket($ticket_id);
+		
+			if(is_array($tracks)){
+				$params['json_tracks'] = json_encode($tracks);
+				$this->abstract_view($params,"map_tracker");	
+			}else{
+				$params['error'] = "Ticket Inv\u00e1lido";
+				$this->abstract_view($params,"tracker_form");
+			}}else {
+				$params['error'] = "Ticket no existe o es Privado";
+				$this->abstract_view($params,"tracker_form");
+			}
+		}else{
+			$this->abstract_view($params,"tracker_form");
+		}
+		
 	}
 	
 	public function abstract_view($params,$view){
