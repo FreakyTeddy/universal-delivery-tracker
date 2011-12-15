@@ -9,7 +9,7 @@
 	position:relative;
 	overflow:hidden;
 	width: 680px;
-	height:120px;
+	height:400px;
 
 	/* custom decorations */
 	border:1px solid #ccc;
@@ -32,6 +32,7 @@
 .items div {
 	float:left;
 	width:680px;
+	height: 400px;
 }
 
 /* single scrollable item */
@@ -41,8 +42,8 @@
 	background-color:#fff;
 	padding:2px;
 	border:1px solid #ccc;
-	width:100px;
-	height:75px;
+	width:630px;
+	height:360px;
 	
 	-moz-border-radius:4px;
 	-webkit-border-radius:4px;

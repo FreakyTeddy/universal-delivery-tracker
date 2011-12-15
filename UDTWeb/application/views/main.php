@@ -35,7 +35,7 @@
 	<div id="main_page">
 		 <?php if(isset($current_view)){$this->load->view($current_view);}?>
 	</div>	
-	<div id="footer">
+	<div id="footer" >
 		Web development</a> by <a href="http://www.americanoticias.multimediosamerica.com.ar/blog.php/toti_pasman">Totti Passman</a> | <a href="http://www.quackit.com">web tutorials</a> | <a href="http://www.htmlcodes.me">html code</a> | <a href="http://www.htmlcodes.me">copyright 2011</a> 
 	</div>
 </body>
