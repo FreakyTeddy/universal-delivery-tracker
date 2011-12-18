@@ -16,6 +16,7 @@ class Welcome extends CI_Controller
 		$params=array();
 		$this->abstract_view($params,"home");
 		
+		
 		/*if (!$this->tank_auth->is_logged_in()) {
 			redirect('/auth/login/');
 		} else {
@@ -23,6 +24,17 @@ class Welcome extends CI_Controller
 			$data['username']	= $this->tank_auth->get_username();
 			$this->load->view('welcome', $data);
 		}*/
+	}
+	
+	function contactenos(){
+		$params=array();
+		$this->abstract_view($params,"contactenos");
+	}
+	
+	function success()
+	{
+		$params=array();
+		$this->abstract_view($params,"contactsSuccess" );
 	}
 	
 	

@@ -16,8 +16,18 @@
 		});
 	</script>
 
-
-
+<div class="contentBox">
+	<div class="innerBox">
+		<div class="contentTitle">
+			Nuestros productos
+		</div>
+		<div class="contentText">
+			<p>Contamos con diferentes packetes de nustros productos de acuerdo a las necesidades del cliente.</p>
+			<p> A Continuacion podran observer en el scroller los distintos tipos.</p>
+			<p> Si deseas obtener mas informacion acerca de los paquetes podes contactarte con nosotros.<?php echo mailto('info@universaltracker.com', 'Contactenos'); ?>
+		</div>
+	</div>	
+</div>
 <div style="margin-left:252px;margin-top:40px;height: 450px;">  
 	<!-- "previous page" action --> 
 	<a class="prev browse left" style="margin-top:184px;"></a> 
@@ -30,17 +40,17 @@
 	   
 	      <!-- 1-5 --> 
 	      <div> 
-	         <img src='<?=base_url()?>images/img1.jpg' />
+	         <img src='<?=base_url()?>images/pack_familiar.png' />
 	      </div> 
 	      
 	      <!-- 5-10 --> 
 	      <div> 
-	         <img src='<?=base_url()?>images/img2.jpg' /> 
+	         <img src='<?=base_url()?>images/pack_pyme.jpg' /> 
 	      </div> 
 	      
 	      <!-- 10-15 --> 
 	      <div> 
-	         <img src='<?=base_url()?>images/img3.png' /> 
+	         <img src='<?=base_url()?>images/pack_corp.png' /> 
 	      </div> 
 	      
 	   </div> 

@@ -15,6 +15,7 @@
 <script type="text/javascript" src="<?=base_url()?>js/jquery.gmap-1.1.0.js"></script>
 <link rel="stylesheet" type="text/css" href="<?=base_url()?>js/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
 <link rel="stylesheet" type="text/css" href='<?=base_url()?>css/anoceanofsky.css' />
+<link rel="stylesheet" type="text/css" href='<?=base_url()?>css/form.css' />
 <title> ::: Universal Tracker ::: </title>
 </head>
 
@@ -23,7 +24,7 @@
         <div class="topNaviagationLink"><?php echo anchor('/welcome/index', 'Inicio'); ?></div>
         <div class="topNaviagationLink"><?php echo anchor('/welcome/products', 'Productos'); ?></div>
         <div class="topNaviagationLink"><?php echo anchor('/tracker/index/', 'Trackear'); ?></div>
-        <div class="topNaviagationLink"><?php echo anchor('', 'Contactenos'); ?></div>
+        <div class="topNaviagationLink"><?php echo mailto('info@universaltracker.com', 'Contactenos'); ?></div>
         <?php if ( $this->tank_auth->is_logged_in() ) { ?>
         <div class="topNaviagationLink"><?php echo anchor('/auth/logout/', 'Logout'); ?></div>
         <?php  }else{?>
