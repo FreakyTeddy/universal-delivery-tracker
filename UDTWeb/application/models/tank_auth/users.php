@@ -378,6 +378,7 @@ class Users extends CI_Model
 	private function create_profile($user_id)
 	{
 		$this->db->set('user_id', $user_id);
+		$this->db->set('a', $user_id);
 		return $this->db->insert($this->profile_table_name);
 	}
 
