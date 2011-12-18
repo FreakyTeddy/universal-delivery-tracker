@@ -11,6 +11,7 @@ class Auth extends CI_Controller
 		$this->load->library('security');
 		$this->load->library('tank_auth');
 		$this->lang->load('tank_auth');
+		$this->load->model('servicio_model');
 	}
 
 	public function abstract_view($view,$params){
@@ -134,9 +135,14 @@ class Auth extends CI_Controller
 	 *
 	 * @return void
 	 */
-	function deshboard()
+	function dashboard()
 	{
 		$params=array();
+		$params['user_id'] = $this->tank_auth->get_user_id();
+		$params['pack'] = $this->servicio_model->get_pack_contratado_by_userid($params['user_id']);
+		$params['services'] = $this->servicio_model->get_servicios_full_by_userid($params['user_id']);
+		$params['reportlink'] = base_url();
+		error_log(print_r($params,true));
 		$this->abstract_view('dashboard', $params);
 	}
 	
