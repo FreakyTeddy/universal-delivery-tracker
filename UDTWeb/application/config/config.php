@@ -14,7 +14,8 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://udt.com';
+//$config['base_url']	= 'http://www.universaltracker.com.ar/';
+$config['base_url']	= 'http://190.19.131.64/';
 
 /*
 |--------------------------------------------------------------------------
