@@ -14,8 +14,8 @@
 | path to your installation.
 |
 */
-//$config['base_url']	= 'http://www.universaltracker.com.ar/';
-$config['base_url']	= 'http://190.19.131.64/';
+$config['base_url']	= 'http://www.universaltracker.com.ar/';
+//$config['base_url']	= 'http://192.168.1.104/';
 
 /*
 |--------------------------------------------------------------------------
