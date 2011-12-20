@@ -53,6 +53,26 @@ class Tracker extends CI_Controller
 		
 	}
 	
+	public function map_family_tracker(){
+		$user_id = null;
+		$user_id = $this->tank_auth->get_user_id();
+		if ( $user_id ){
+			$trackinfo = null;
+			$trackinfo = $this->ticket_model->get_family_ticket($user_id);
+		}
+		$this->abstract_view($trackinfo,"map_family_tracker");
+	}
+	
+	public function ajax_map_family(){
+		$id_ticket = null;
+		$id_ticket=$this->input->get('id_ticket');
+		if ( $id_ticket ){
+			$data = null;
+			$data = $this->track_model->get_family_tracks($id_ticket);
+		}
+		echo json_encode($data);
+	}
+	
 	public function abstract_view($params,$view){
     	$params["current_view"] = $view;
         $this->load->view('main',$params);
