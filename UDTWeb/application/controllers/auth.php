@@ -38,7 +38,7 @@ class Auth extends CI_Controller
 	function login()
 	{
 		if ($this->tank_auth->is_logged_in()) {									// logged in
-			redirect('/auth/deshboard/');
+			redirect('/auth/dashboard/');
 			//$this->abstract_view('dashboard',null);
 
 		} elseif ($this->tank_auth->is_logged_in(FALSE)) {						// logged in, not activated
@@ -141,7 +141,7 @@ class Auth extends CI_Controller
 		$params['user_id'] = $this->tank_auth->get_user_id();
 		$params['pack'] = $this->servicio_model->get_pack_contratado_by_userid($params['user_id']);
 		$params['services'] = $this->servicio_model->get_servicios_full_by_userid($params['user_id']);
-		$params['reportlink'] = base_url();
+		$params['reportlink'] = base_url()."index.php/report/report_gen/".$this->tank_auth->get_user_id();
 		error_log(print_r($params,true));
 		$this->abstract_view('dashboard', $params);
 	}
