@@ -1,10 +1,11 @@
+ <link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="<?=base_url()?>css/ui-lightness/jquery-ui-1.8.16.custom.css" media="screen" />	
 <script type="text/javascript" src="<?=base_url()?>js/jquery-1.6.2.min.js"></script>
 <script type="text/javascript" src="<?=base_url()?>js/jquery-ui-1.8.16.custom.min.js"></script>
 
 
 <meta charset="utf-8">
-	<script>
+	<script type="text/javascript">
 	$(function() {
 		var dates = $( "#from, #to" ).datepicker({
 			maxDate: "+1D" ,
@@ -24,30 +25,50 @@
 		});
 	});
 
+	 var resp = null;
 
+	function showRecorrido() {
+		
+			  if(resp!=null){
+					var mapOptions = {
+							zoom: 13,
+							mapTypeId: google.maps.MapTypeId.ROADMAP
+						};
+					var map = new google.maps.Map(document.getElementById("map_canvas"),
+					           mapOptions);
+				map.setCenter(new google.maps.LatLng(resp[0]['lat']/1000000,resp[0]['lon']/1000000),5);
+
+				var coordinates = [];
+				  for(var i=0;i< resp.length -1;i++){
+				        var obj = resp[i];
+				        coordinates.push( new google.maps.LatLng(resp[i]['lat']/1000000,resp[i]['lon']/1000000));
+				  }
+				  var path = new google.maps.Polyline({
+                      path: coordinates,
+                      strokeColor: "#FF0000",
+                      strokeOpacity: 1.0,
+                      strokeWeight: 2
+                    });
+
+                    path.setMap(map);
+
+	
+		}
+	} 
 	
 	$(document).ready(function() {
 		  $('#generate').click(function() {
-
 			  $.ajax({
 				  type: 'POST',
 				  url: '<?php echo $report_url;?>',
 				  data: 'imei='+$("#device").val()+'&from='+$("#from").val()+'&to='+$("#to").val(),
 				  dataType:'json',
 				  success: function(response){
-					   var resp = response;
-					   $("#report_table").empty();
-					   $('#report_table').append('<tr><th>Timestamp</th><th>Lat</th><th>Lon</th><th>Map</th></tr>');
-					    
-					  
-					   if(resp!=null){
-					   for(var i=0;i< resp.length;i++){
-					        var obj = resp[i];
-					        $('#report_table').append('<tr id="fila'+i+'"><td>'+obj['timestamp']+'</td><td>'+obj['lat']+'</td><td>'+obj['lon']+'</td><td><a target="blank" href="http://maps.google.com/maps/api/staticmap?zoom=16&size=1024x1024&maptype=roadmap&markers=color:blue|'+(obj['lat']/1000000)+','+(obj['lon']/1000000)+'&sensor=false">Ver</a></td></tr>');
-					  }
+					  resp = response;
+					  $("#map_canvas").empty();
+					  showRecorrido();
 					   }
-				  }
-				});
+				  });
 			    
 		  });
 		});
@@ -56,7 +77,7 @@
 </script>  
 
 	
-	</script>
+
 
 
 
@@ -73,17 +94,10 @@ foreach ( $devices as $device){
 <input type="text" id="from" name="from"/>
 <label for="to">hasta</label>
 <input type="text" id="to" name="to"/>
-<button id="generate">Generate!</button>
+<button id="generate">Recorrido</button>
 </div>
-<div id="report">
-<table id="report_table" border="1">
-  <tr>
-    <th>Timestamp</th>
-    <th>Lat</th>
-    <th>Lon</th>
-    <th>Map</th>    
-  </tr>
-  
-</table>
-</div>
+
+<div id="map_canvas" style="height: 500px;width:500px;"></div>
+
+
 

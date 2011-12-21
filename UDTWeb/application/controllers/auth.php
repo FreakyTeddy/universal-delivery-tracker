@@ -139,9 +139,12 @@ class Auth extends CI_Controller
 	{
 		$params=array();
 		$params['user_id'] = $this->tank_auth->get_user_id();
+		$params["devices"] = $this->servicio_model->get_devices_by_user($params['user_id']);
 		$params['pack'] = $this->servicio_model->get_pack_contratado_by_userid($params['user_id']);
 		$params['services'] = $this->servicio_model->get_servicios_full_by_userid($params['user_id']);
 		$params['reportlink'] = base_url()."index.php/report/report_gen/".$this->tank_auth->get_user_id();
+		$params['recorridolink'] = base_url()."index.php/report/recorrido_gen/".$this->tank_auth->get_user_id();
+		$params['addlink'] = base_url()."index.php/servicios/add_device_form/".$this->tank_auth->get_user_id();
 		error_log(print_r($params,true));
 		$this->abstract_view('dashboard', $params);
 	}

@@ -22,6 +22,13 @@ class Report extends CI_Controller
 		$this->abstract_view($params,"report");
 	}
 	
+	public function recorrido_gen($user_id){
+		$params=array();
+		$params["devices"] = $this->servicio_model->get_devices_by_user($user_id);
+		$params["report_url"] = base_url()."index.php/report/generate_report/";
+		$this->abstract_view($params,"recorrido");
+	}
+	
 	public function generate_report(){
 			$from = $this->input->post('from');
 			$to = $this->input->post('to');
@@ -29,6 +36,7 @@ class Report extends CI_Controller
 			echo json_encode($this->track_history_model->get_tracks_by_date($imei,$from,$to));
 	}
 	
+		
 	public function abstract_view($params,$view){
     	$params["current_view"] = $view;
         $this->load->view('main',$params);
