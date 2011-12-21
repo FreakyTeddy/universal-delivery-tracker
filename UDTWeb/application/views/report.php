@@ -39,6 +39,10 @@
 				  dataType:'json',
 				  success: function(response){
 					   var resp = response;
+					   $("#report_table").empty();
+					   $('#report_table').append('<tr><th>Timestamp</th><th>Lat</th><th>Lon</th><th>Map</th></tr>');
+					    
+					  
 					   if(resp!=null){
 					   for(var i=0;i< resp.length;i++){
 					        var obj = resp[i];
@@ -80,7 +84,7 @@ foreach ( $devices as $device){
     <th>Timestamp</th>
     <th>Lat</th>
     <th>Lon</th>
-    <th>Direccion</th>    
+    <th>Map</th>    
   </tr>
   
 </table>
