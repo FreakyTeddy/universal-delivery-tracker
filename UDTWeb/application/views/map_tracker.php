@@ -2,7 +2,6 @@
  <script type="text/javascript">
 		
 		var tracks =  <?php echo $json_tracks; ?>;
-		
 		var map;
 		
 		 function initialize() {
@@ -30,9 +29,24 @@
 			 map.setCenter(pos)	;
 		}
 		
-		 
-      google.maps.event.addDomListener(window, 'load', initialize);
-    </script>  
+		google.maps.event.addDomListener(window, 'load', initialize);
+
+		 function cron()
+			{
+				var id=<?php echo $ticket_id;?>;
+				
+				$.getJSON("<?=base_url()?>index.php/tracker/ajax_map?ticket_id="+id,
+					function(data){
+						console.log(data);
+						tracks = data;
+						initialize();
+					});
+			};
+				
+			
+
+		time=setInterval(cron, 30000); //cada 30 segundos llamará a la función   
+</script>  
 <?php if(isset($descripcion)){ ?>	
  <div style="background-color: rgb(255, 255, 255); width: 500px; height: 100px; text-align: center;" id="info">
  <?php echo $descripcion; ?>

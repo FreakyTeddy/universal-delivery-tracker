@@ -42,7 +42,8 @@
 
 	 function cron()
 	{
-		var id=3;
+		var id=<?php echo $id_ticket;?>;
+		
 		$.getJSON("<?=base_url()?>index.php/tracker/ajax_map_family?id_ticket="+id,
 			function(data){
 				initialize(data);

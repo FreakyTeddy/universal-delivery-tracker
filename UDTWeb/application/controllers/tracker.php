@@ -30,6 +30,7 @@ class Tracker extends CI_Controller
 	
 		$params=array();
 		$ticket_id = $this->input->post('tracker_number');
+		$params['ticket_id'] = $ticket_id;
 		$tracks =null;
 		if($ticket_id){
 			$trackinfo = $this->ticket_model->get_by_id($ticket_id);
@@ -71,6 +72,19 @@ class Tracker extends CI_Controller
 			$data = $this->track_model->get_family_tracks($id_ticket);
 		}
 		echo json_encode($data);
+	}
+	
+	public function ajax_map(){
+		$id_ticket = null;
+		$tracks = null;
+		$trackinfo = null;
+		$id_ticket=$this->input->get('ticket_id');
+		if($id_ticket){
+			$trackinfo = $this->ticket_model->get_by_id($id_ticket);
+			if($trackinfo)
+				$tracks = $this->track_model->get_tracks_by_ticket($id_ticket);
+		}	
+		echo json_encode($tracks);
 	}
 	
 	public function abstract_view($params,$view){

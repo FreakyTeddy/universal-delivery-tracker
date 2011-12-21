@@ -30,7 +30,7 @@
         <div class="topNaviagationLink"><?php echo anchor('/tracker/map_family_tracker', 'Track Familiar'); ?></div>
         <?php  }else{?>
         <div class="topNaviagationLink"><?php echo anchor('/auth/login/', 'Login'); ?></div>
-        <div class="topNaviagationLink"><?php echo anchor('/auth/register/', 'Register'); ?></div>
+        <div class="topNaviagationLink"><?php echo anchor('/auth/register/', 'Registrarse'); ?></div>
         <?php }?>
         
 	</div>
@@ -38,7 +38,7 @@
 		 <?php if(isset($current_view)){$this->load->view($current_view);}?>
 	</div>	
 	<div id="footer" >
-		Web development</a> by <a href="http://www.americanoticias.multimediosamerica.com.ar/blog.php/toti_pasman">Totti Passman</a> | <a href="http://www.quackit.com">web tutorials</a> | <a href="http://www.htmlcodes.me">html code</a> | <a href="http://www.htmlcodes.me">copyright 2011</a> 
+		Web development</a> by <a href="http://www.universaltracker.com.ar">Universal Tracker Delivery</a> | <a href="http://www.quackit.com">web tutorials</a> | <a href="http://www.htmlcodes.me">html code</a> | <a href="http://www.htmlcodes.me">copyright 2011</a> 
 	</div>
 </body>
 </html>   

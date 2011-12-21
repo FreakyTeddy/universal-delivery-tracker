@@ -1,8 +1,8 @@
 <?php echo form_open('tracker/map_tracker'); ?>
 
-<h5>Ingrese su número de pedido: </h5>
-<input type="text" name="tracker_number" value="" size="50" />
-<div><input type="submit" value="Submit" /></div>
+<div id="title">Ingrese su número de pedido: </div>
+<div align="center" class="submit"><input type="text" name="tracker_number" value="" size="35" /></div>
+<div align="center" class="submit"><input type="submit" value="Rastrear" /></div>
 </form>
 
  <script type="text/javascript">

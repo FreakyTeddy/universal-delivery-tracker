@@ -34,12 +34,12 @@ $confirm_password = array(
 <?php echo form_open($this->uri->uri_string()); ?>
 <div id="title">Registrarse</div> 
 	<?php if ($use_username) { ?>
-	<div class="row"><?php echo form_label('Username:', $username['id'],$attributes = array('class' => 'col1')); ?>
+	<div class="row"><?php echo form_label('Usuario:', $username['id'],$attributes = array('class' => 'col1')); ?>
 		<span class="col2"><?php echo form_input($username,$attributes = array('class' => 'input')); ?></span>
 		<div style="color: red;"><?php echo form_error($username['name']); ?><?php echo isset($errors[$username['name']])?$errors[$username['name']]:''; ?></div>
 	</div>
 	<?php } ?>
-	<div class="row"><?php echo form_label('Email Address:', $email['id'],$attributes = array('class' => 'col1')); ?>
+	<div class="row"><?php echo form_label('Email:', $email['id'],$attributes = array('class' => 'col1')); ?>
 		<span class="col2"><?php echo form_input($email,$attributes = array('class' => 'input')); ?></span>
 		<div style="color: red;"><?php echo form_error($email['name']); ?><?php echo isset($errors[$email['name']])?$errors[$email['name']]:''; ?></div>
 	</div>

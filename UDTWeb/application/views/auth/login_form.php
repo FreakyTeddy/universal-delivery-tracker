@@ -4,10 +4,10 @@ $login = array(
 	'id'	=> 'login',
 	'value' => set_value('login'),
 	'maxlength'	=> 80,
-	'size'	=> 30,
+	'size'	=> 20,
 );
 if ($login_by_username AND $login_by_email) {
-	$login_label = 'Email or login';
+	$login_label = 'Email o login: ';
 } else if ($login_by_username) {
 	$login_label = 'Login';
 } else {
@@ -16,7 +16,7 @@ if ($login_by_username AND $login_by_email) {
 $password = array(
 	'name'	=> 'password',
 	'id'	=> 'password',
-	'size'	=> 30,
+	'size'	=> 20,
 );
 $remember = array(
 	'name'	=> 'remember',
@@ -32,20 +32,21 @@ $captcha = array(
 );
 ?>
 <?php echo form_open($this->uri->uri_string()); ?>
-<table>
-	<tr>
-		<td><?php echo form_label($login_label, $login['id']); ?></td>
-		<td><?php echo form_input($login); ?></td>
-		<td style="color: red;"><?php echo form_error($login['name']); ?><?php echo isset($errors[$login['name']])?$errors[$login['name']]:''; ?></td>
-	</tr>
-	<tr>
-		<td><?php echo form_label('Password', $password['id']); ?></td>
-		<td><?php echo form_password($password); ?></td>
-		<td style="color: red;"><?php echo form_error($password['name']); ?><?php echo isset($errors[$password['name']])?$errors[$password['name']]:''; ?></td>
-	</tr>
+<div id="title">Login</div>
+
+		<div class="row"><?php echo form_label($login_label, $login['id'],$attributes = array('class' => 'col1')); ?>
+			<span class="col2"><?php echo form_input($login,$attributes = array('class' => 'input'));  ?></span>
+			<div style="color: red;"><?php echo form_error($login['name']); ?><?php echo isset($errors[$login['name']])?$errors[$login['name']]:''; ?></div>
+		</div>
+		<div class="row"><?php echo form_label('Password: ', $password['id'],$attributes = array('class' => 'col1')); ?>
+			<span class="col2"><?php echo form_password($password,$attributes = array('class' => 'input'));  ?></span>
+			<div style="color: red;"><?php echo form_error($password['name']); ?><?php echo isset($errors[$password['name']])?$errors[$password['name']]:''; ?></div>
+		</div>
+
 
 	<?php if ($show_captcha) {
 		if ($use_recaptcha) { ?>
+		<table>
 	<tr>
 		<td colspan="2">
 			<div id="recaptcha_image"></div>
@@ -77,17 +78,17 @@ $captcha = array(
 		<td><?php echo form_input($captcha); ?></td>
 		<td style="color: red;"><?php echo form_error($captcha['name']); ?></td>
 	</tr>
+			
+</table>
 	<?php }
 	} ?>
+	
 
-	<tr>
-		<td colspan="3">
+	<div class="submit">
 			<?php echo form_checkbox($remember); ?>
-			<?php echo form_label('Remember me', $remember['id']); ?>
-			<?php echo anchor('/auth/forgot_password/', 'Forgot password'); ?>
-			<?php if ($this->config->item('allow_registration', 'tank_auth')) echo anchor('/auth/register/', 'Register'); ?>
-		</td>
-	</tr>
-</table>
-<?php echo form_submit('submit', 'Let me in'); ?>
+			<?php echo form_label('Recordarme', $remember['id']); ?>
+			<?php echo anchor('/auth/forgot_password/', 'Olvidó password'); ?>
+			<?php if ($this->config->item('allow_registration', 'tank_auth')) echo anchor('/auth/register/', 'Registrar'); ?>
+	</div>
+<div align="center" class="submit"><?php echo form_submit('submit', 'Entrar'); ?></div>
 <?php echo form_close(); ?>
