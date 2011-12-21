@@ -37,5 +37,13 @@ class Servicio_Model extends Db_Abstract_Model {
 			return null;	   
 	   }
 		
+	   function get_devices_by_user($user_id){
+	   		$sql = "SELECT imei FROM  `dispositivo` WHERE id_cliente = $user_id";
+	  	 	$query = $this->db->query($sql);
+				if ($query->num_rows() > 0){
+					return  $query->result_array();
+				}
+			return null;	   
+	   }
 }
 ?>

@@ -77,7 +77,7 @@ class Auth extends CI_Controller
 						$this->form_validation->set_value('remember'),
 						$data['login_by_username'],
 						$data['login_by_email'])) {								// success
-					redirect('/auth/deshboard/');
+					redirect('/auth/dashboard/');
 					//$this->abstract_view('dashboard',$data);
 
 				} else {
