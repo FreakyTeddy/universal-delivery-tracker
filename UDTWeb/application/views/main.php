@@ -26,6 +26,7 @@
         <div class="topNaviagationLink"><?php echo anchor('/tracker/index/', 'Trackear'); ?></div>
         <div class="topNaviagationLink"><?php echo mailto('info@universaltracker.com', 'Contactenos'); ?></div>
         <?php if ( $this->tank_auth->is_logged_in() ) { ?>
+          <div class="topNaviagationLink"><?php echo anchor('/auth/dashboard/', 'Dashboard'); ?></div>
         <div class="topNaviagationLink"><?php echo anchor('/auth/logout/', 'Logout'); ?></div>
         <div class="topNaviagationLink"><?php echo anchor('/tracker/map_family_tracker', 'Track Familiar'); ?></div>
         <?php  }else{?>
