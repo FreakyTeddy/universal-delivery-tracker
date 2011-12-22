@@ -1,4 +1,5 @@
-<link rel="stylesheet" type="text/css" href="<?=base_url()?>css/ui-lightness/jquery-ui-1.8.16.custom.css" media="screen" />	
+<link rel="stylesheet" type="text/css" href="<?=base_url()?>css/ui-lightness/jquery-ui-1.8.16.custom.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="<?=base_url()?>css/report.css"  />		
 <script type="text/javascript" src="<?=base_url()?>js/jquery-1.6.2.min.js"></script>
 <script type="text/javascript" src="<?=base_url()?>js/jquery-ui-1.8.16.custom.min.js"></script>
 
@@ -61,22 +62,33 @@
 
 
 <div class="demo">
-<label>Dispositivo: </label>
-<select id="device">
-<?php 
-foreach ( $devices as $device){
-	echo "<option value=\"".$device["imei"]."\" >".$device["imei"]."</option>";
-}
-?>
-</select>
-<label for="from">Desde</label>
-<input type="text" id="from" name="from"/>
-<label for="to">hasta</label>
-<input type="text" id="to" name="to"/>
-<button id="generate">Generate!</button>
+<div id="title">Generar reporte</div>
+<div class="row">
+	<label class="col1">Dispositivo: </label>
+
+	<span class="col2">	
+		<select id="device" class="input">
+		<?php 
+		foreach ( $devices as $device){
+			echo "<option class='input' value=\"".$device["imei"]."\" >".$device["imei"]."</option>";
+		}
+		?>
+		</select>
+	</span>
+</div>	
+<div class="row">	
+	<label class="col1" for="from">Desde:</label>
+	<span class="col2"><input class="input" type="text" id="from" name="from"/></span>
 </div>
-<div id="report">
-<table id="report_table" border="1">
+<div class="row">	
+	<label class="col1" for="to">Hasta:</label>
+	<span class="col2"><input class="input" type="text" id="to" name="to"/></span>
+</div>	
+
+<div align="center" class="submit"><button id="generate">Generar</button></div>
+</div>
+<div id="report" style="padding-top: 20px;">
+<table id="report_table" style="color:white;" border="1">
   <tr>
     <th>Timestamp</th>
     <th>Lat</th>
