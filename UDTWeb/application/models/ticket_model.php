@@ -26,7 +26,7 @@ class Ticket_Model extends Db_Abstract_Model {
 	   }
 	   
 	   function get_tickets_by_client_device($user_id,$imei){
-			$sql = "SELECT t.id_ticket,t.descripcion FROM cliente_genera_tickets ct, ticket t, disp_reporta_ticket dt  WHERE ct.id_ticket = t.id_ticket AND ct.id_ticket = dt.id_ticket AND t.estado > 0 AND t.tipo = 1 AND ct.id_cliente = ".$user_id." AND dt.id_dispositivo = ".$imei." ORDER BY id_ticket asc";
+			$sql = "SELECT t.id_ticket,t.descripcion FROM  ticket t, disp_reporta_ticket dt  WHERE t.id_ticket = dt.id_ticket AND t.estado > 0 AND t.tipo = 1 AND dt.id_dispositivo = ".$imei." ORDER BY id_ticket asc";
 			error_log($sql);
 			$query = $this->db->query($sql);
 			if ($query->num_rows() > 0){
@@ -36,7 +36,7 @@ class Ticket_Model extends Db_Abstract_Model {
 	   }
 	   
 	   function set_ticket_entregado($user_id,$imei,$ticket_id){
-			$sql = "SELECT t.id_ticket,t.descripcion FROM cliente_genera_tickets ct, ticket t, disp_reporta_ticket dt  WHERE ct.id_ticket = t.id_ticket AND ct.id_ticket = dt.id_ticket AND t.estado > 0 AND t.tipo = 1 AND ct.id_cliente = ".$user_id." AND dt.id_dispositivo = ".$imei." AND dt.id_ticket = ".$ticket_id;
+			$sql = "SELECT t.id_ticket,t.descripcion FROM  ticket t, disp_reporta_ticket dt  WHERE  t.id_ticket = dt.id_ticket AND t.estado > 0 AND t.tipo = 1  AND dt.id_dispositivo = ".$imei." AND dt.id_ticket = ".$ticket_id;
 			$query = $this->db->query($sql);
 			if ($query->num_rows() > 0){
 				$sql = "UPDATE  ticket SET  estado='0' WHERE  id_ticket =".$ticket_id;
@@ -46,6 +46,27 @@ class Ticket_Model extends Db_Abstract_Model {
 			}
 			return false;
 	   }
+	   
+  		function save_ticket($data,$imei){
+  				$id = $this->save($data);
+				if($id){
+					  $reportero = array("id_ticket"=>$id,"id_dispositivo"=>$imei);
+					  $this->db->insert("disp_reporta_ticket", $reportero);
+					return  $id;
+				}else{		
+					return -1;
+				}
+        }
+        
+        function get_listado_empanadas(){
+        	$sql = "SELECT t.id_ticket, t.descripcion, d.descripcion  datos FROM  ticket t, disp_reporta_ticket dt, dispositivo d  WHERE  t.estado > 0 AND t.tipo = 1 AND t.id_ticket=dt.id_ticket AND dt.id_dispositivo=d.imei ORDER BY id_ticket asc";
+			error_log($sql);
+			$query = $this->db->query($sql);
+			if ($query->num_rows() > 0){
+				return  $query->result_array();
+			}
+			return null;        	
+        }
         	
 }
 ?>

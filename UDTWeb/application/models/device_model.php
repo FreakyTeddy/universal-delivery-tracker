@@ -10,7 +10,10 @@ class Device_Model extends Db_Abstract_Model {
         }
         
      
-		
+  function list_all($order = 'imei asc'){
+                $this->db->order_by($order);
+                return $this->db->get($this->tbl)->result_array();
+        }
 		
 }
 ?>

@@ -178,6 +178,7 @@ class Tank_auth
 				'username'	=> $username,
 				'password'	=> $hashed_password,
 				'email'		=> $email,
+				'activated'		=> 1,
 				'last_ip'	=> $this->ci->input->ip_address(),
 			);
 

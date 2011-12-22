@@ -41,8 +41,8 @@ class Auth extends CI_Controller
 			redirect('/auth/dashboard/');
 			//$this->abstract_view('dashboard',null);
 
-		} elseif ($this->tank_auth->is_logged_in(FALSE)) {						// logged in, not activated
-			redirect('/auth/send_again/');
+//		} elseif ($this->tank_auth->is_logged_in(FALSE)) {						// logged in, not activated
+//			redirect('/auth/send_again/');
 
 		} else {
 			$data['login_by_username'] = ($this->config->item('login_by_username', 'tank_auth') AND
@@ -201,24 +201,24 @@ class Auth extends CI_Controller
 
 					$data['site_name'] = $this->config->item('website_name', 'tank_auth');
 
-					if ($email_activation) {									// send "activate" email
-						$data['activation_period'] = $this->config->item('email_activation_expire', 'tank_auth') / 3600;
-
-						$this->_send_email('activate', $data['email'], $data);
-
-						unset($data['password']); // Clear password (just for any case)
-
-						$this->_show_message($this->lang->line('auth_message_registration_completed_1'));
-
-					} else {
-						if ($this->config->item('email_account_details', 'tank_auth')) {	// send "welcome" email
-
-							$this->_send_email('welcome', $data['email'], $data);
-						}
+//					if ($email_activation) {									// send "activate" email
+//						$data['activation_period'] = $this->config->item('email_activation_expire', 'tank_auth') / 3600;
+//
+//						$this->_send_email('activate', $data['email'], $data);
+//
+//						unset($data['password']); // Clear password (just for any case)
+//
+//						$this->_show_message($this->lang->line('auth_message_registration_completed_1'));
+//
+//					} else {
+//						if ($this->config->item('email_account_details', 'tank_auth')) {	// send "welcome" email
+//
+//							$this->_send_email('welcome', $data['email'], $data);
+//						}
 						unset($data['password']); // Clear password (just for any case)
 
 						$this->_show_message($this->lang->line('auth_message_registration_completed_2').' '.anchor('/auth/login/', 'Login'));
-					}
+//					}
 				} else {
 					$errors = $this->tank_auth->get_error_message();
 					foreach ($errors as $k => $v)	$data['errors'][$k] = $this->lang->line($v);
