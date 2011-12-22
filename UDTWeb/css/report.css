@@ -1,0 +1,58 @@
+
+#report_msj{
+  background-color: #94BEF3;
+    border: 1px solid white;
+    height: auto;
+    margin-top: 50px;
+    width: 500px;
+    padding: 10px;
+}
+.title{
+	text-align: left;
+	clear: both;
+    float: left;
+    font-size: 21px;
+    padding: 5px;
+    width: 150px;
+	
+}
+.name{
+    float: left;
+    margin-top: 7px;
+    padding: 5px;
+}
+.servicios{
+	text-align: left;
+	clear: both;
+    float: left;
+    font-size: 21px;
+    padding: 5px;
+	width: 400px;
+}
+.item{
+    margin-top: 7px;
+    padding: 5px;
+}
+.demo{
+	padding-top: 40px;
+}
+#contratados{
+	float: left;
+	width: 300px;
+}
+
+#pack{
+	height: 250px;
+	width: 325px;
+}
+
+#report_table{
+	color: white;
+}
+#reporte{
+	width: 150px;
+}
+
+a{
+	color:wheat;
+}
